@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shadi Seyedi, PhD — Health Economist & Data Scientist</title>
+  <meta name="description" content="Health Economist & Data Scientist (HEOR, causal inference, survey analytics). Remote-first; based in Ann Arbor, MI.">
+  
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Shadi Seyedi, PhD — Health Economist & Data Scientist" />
+  <meta property="og:description" content="HEOR • Causal Inference • Survey Analytics (MEPS/ACS). Remote-first; based in Ann Arbor, MI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shadi-sadie.github.io/" />
+  <meta property="og:image" content="/assets/og-image.jpg" />
+  <meta name="theme-color" content="#0e1116" />
+
+  <style>
+    :root {
+      --bg: #0e1116;          /* charcoal */
+      --panel: #151a22;       /* dark slate */
+      --text: #e8edf3;        /* near-white */
+      --muted: #b6c2d1;       /* muted text */
+      --accent: #7cd4ff;      /* soft cyan */
+      --accent-2: #ffd166;    /* warm accent */
+      --link: #8ecae6;        /* link */
+      --maxw: 1100px;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; height: auto; border-radius: 12px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header { position: sticky; top: 0; backdrop-filter: blur(10px); background: rgba(14,17,22,0.8); border-bottom: 1px solid #1f2631; z-index: 50; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { font-weight: 700; letter-spacing: 0.3px; }
+    .brand span { color: var(--accent); }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
+    nav a { color: var(--text); opacity: 0.9; }
+    nav a:hover { opacity: 1; }
+    .menu-btn { display: none; background: none; border: 1px solid #263041; color: var(--text); padding: 8px 10px; border-radius: 10px; }
+
+    /* Hero */
+    .hero { padding: 64px 0 28px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
+    .hero h1 { font-size: clamp(28px, 4.5vw, 44px); margin: 0 0 10px; line-height: 1.1; }
+    .kicker { color: var(--accent); font-weight: 600; letter-spacing: 0.3px; margin-bottom: 8px; }
+    .lead { color: var(--muted); font-size: 1.05rem; margin: 10px 0 16px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid #2a3446; background: #19202b; color: var(--text); font-weight: 600; }
+    .btn.primary { background: linear-gradient(180deg, #1d2430, #151a22); border-color: #313a4a; box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03); }
+    .note { color: var(--muted); font-size: 0.95rem; margin-top: 6px; }
+
+    /* Sections */
+    section { padding: 42px 0; border-top: 1px solid #1f2631; }
+    h2 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 18px; }
+    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
+    .card { grid-column: span 12; background: var(--panel); padding: 18px; border: 1px solid #1f2631; border-radius: var(--radius); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
+    .card h3 { margin-top: 0; }
+
+    /* Two/three column helpers */
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+
+    /* Lists */
+    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #1a2230; border: 1px solid #283145; color: var(--muted); font-size: 0.9rem; margin: 4px 6px 0 0; }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+
+    /* Footer */
+    footer { padding: 34px 0 60px; color: var(--muted); text-align: center; }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+      .menu-btn { display: inline-block; }
+      nav.open ul { display: flex; flex-direction: column; gap: 12px; position: absolute; top: 56px; right: 20px; background: #121720; padding: 14px; border: 1px solid #273043; border-radius: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav" id="topnav">
+      <div class="brand">Shadi <span>Seyedi</span></div>
+      <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('topnav').classList.toggle('open')">Menu</button>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/assets/Shadi_Seyedi_CV.pdf">CV</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <div class="kicker">Health Economist & Data Scientist</div>
+        <h1>HEOR • Causal Inference • Survey Analytics (MEPS/ACS)</h1>
+        <p class="lead">I build transparent, policy-relevant analyses using modern DiD/event-study estimators and practical HEOR models. Remote‑first, based in Ann Arbor, MI; available to travel ~1 week/month.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/assets/Shadi_Seyedi_CV.pdf">Download CV</a>
+          <a class="btn" href="#contact">Contact</a>
+          <a class="btn" href="https://github.com/Shadi-Sadie" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/shadi-seyedi" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="note">PhD (2025). Open to remote HEOR / data science / policy research roles.</div>
+      </div>
+      <div>
+        <!-- Replace headshot.jpg with your image at /assets/headshot.jpg -->
+        <img src="/assets/headshot.jpg" alt="Portrait of Shadi Seyedi" />
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About</h2>
+      <div class="grid">
+        <div class="card">
+          <p>I'm a health economist focused on evaluating policy impacts and value for money in healthcare. My recent work examines the Affordable Care Act's Medicaid expansion using interaction‑weighted event studies, and analyzes health outcomes and expenditure patterns in MEPS with survey‑weighted models and subgroup analysis.</p>
+          <p>Method interests: identification in staggered adoption settings, survey design & variance estimation, budget impact modeling, and decision‑useful evidence generation for payers and providers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card col-6">
+          <h3>Tools & Languages</h3>
+          <p class="meta">Python, R, Stata, SQL, Git, LaTeX</p>
+          <span class="pill">pandas</span>
+          <span class="pill">statsmodels</span>
+          <span class="pill">scikit-learn</span>
+          <span class="pill">PyTorch</span>
+          <span class="pill">TensorFlow</span>
+        </div>
+        <div class="card col-6">
+          <h3>Methods</h3>
+          <p class="meta">Causal inference (DiD: Sun & Abraham; Callaway & Sant’Anna), survey methods, GLMs, mixed models, causal ML</p>
+          <span class="pill">Event studies</span>
+          <span class="pill">Heterogeneity</span>
+          <span class="pill">Design effects</span>
+          <span class="pill">Bootstrap / clustering</span>
+        </div>
+        <div class="card col-12">
+          <h3>HEOR</h3>
+          <p class="meta">Budget impact & cost‑effectiveness structure, input sourcing, uncertainty (one‑way, PSA), communication for decisions</p>
+          <span class="pill">BIM</span>
+          <span class="pill">CEA</span>
+          <span class="pill">Sensitivity analysis</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2>Selected Projects</h2>
+      <div class="grid">
+        <article class="card col-6">
+          <h3>Medicaid Expansion: Modern DiD on ACS (2011–2019)</h3>
+          <p class="meta">Policy impact on coverage under staggered adoption using interaction‑weighted event studies; pre‑trend diagnostics and cohort‑specific ATTs.</p>
+          <ul>
+            <li>Sun & Abraham IWE; cohort/event‑time decomposition</li>
+            <li>Robustness: placebo cohorts, alternative timing, weights</li>
+          </ul>
+          <p><a href="/assets/medicaid_did_2pager.pdf">2‑page brief</a> · <a href="/assets/medicaid_did_slides.pdf">Slides</a> · <a href="https://github.com/your-repo-here" target="_blank" rel="noopener">Code</a></p>
+        </article>
+        <article class="card col-6">
+          <h3>MEPS Health Outcomes & Expenditures</h3>
+          <p class="meta">Survey‑weighted models for ER/hospitalization outcomes, chronic‑condition subgroup analysis, and expenditure decomposition across sectors.</p>
+          <ul>
+            <li>svy design & replicate weights; design‑based SEs</li>
+            <li>Heterogeneity by chronic condition; ER decline in subgroup</li>
+          </ul>
+          <p><a href="/assets/meps_outcomes_summary.pdf">Summary</a> · <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a></p>
+        </article>
+        <article class="card col-6">
+          <h3>HEOR Budget Impact Mini‑Model (Python)</h3>
+          <p class="meta">Toy model demonstrating structure, inputs, and uncertainty (one‑way + PSA) for payer‑oriented decision support.</p>
+          <ul>
+            <li>Spreadsheet‑like inputs; reproducible outputs</li>
+            <li>Sensitivity tornado + PSA histogram</li>
+          </ul>
+          <p><a href="/assets/heor_bim_readme.pdf">ReadMe</a> · <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2>Publications & Working Papers</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Medicaid Expansion and Coverage by Nativity: Evidence from Modern DiD</h3>
+          <p class="meta">Working paper (2025) — PDF & slides</p>
+          <p><a href="/assets/medicaid_expansion_wp.pdf">PDF</a> · <a href="/assets/medicaid_wp_slides.pdf">Slides</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card">
+          <p>Email: <a href="mailto:shadi.seyedi@gmail.com">shadi.seyedi@gmail.com</a></p>
+          <p>LinkedIn: <a href="https://www.linkedin.com/in/shadi-seyedi" target="_blank" rel="noopener">/in/shadi-seyedi</a></p>
+          <p>GitHub: <a href="https://github.com/Shadi-Sadie" target="_blank" rel="noopener">@Shadi-Sadie</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> Shadi Seyedi · Built with plain HTML/CSS on GitHub Pages</div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
