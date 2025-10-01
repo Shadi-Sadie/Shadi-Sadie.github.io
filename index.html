@@ -90,10 +90,13 @@
     .muted { color: var(--muted); }
     .kicker { color: var(--accent-2); font-weight: 600; letter-spacing: 0.02em; }
 
+    .hero .about-intro { margin-top: 12px; color: var(--text); max-width: 65ch; }
+
     .hero { position: relative; margin-top: 0; padding: 54px 0 20px; display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center; isolation: isolate; z-index: 0; }
     .hero::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100%; background: linear-gradient(180deg, color-mix(in oklab, var(--pale) 40%, transparent), transparent 70%); pointer-events: none; z-index: -1; }
     /* .hero-band removed: using .hero::before for full‑bleed tint */
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    
+.hero-cta { margin-top: 12px; }
     .btn { border: 1px solid currentColor; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; line-height: 1; display: inline-flex; align-items: center; gap: 8px; transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease; will-change: transform; }
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: 0 4px 12px rgba(23,28,38,0.16); }
     /* CTA hover/active/focus */
@@ -139,15 +142,23 @@
       box-shadow: 0 8px 24px rgba(23,28,38,0.08); /* soft lift */
     }
     .portrait {
-      display: block;
-      width: 100%;
-      max-width: 320px;          /* overall size cap */
-      aspect-ratio: 1 / 1;       /* square crop for circle */
-      object-fit: cover;         /* fill the circle nicely */
-      border-radius: 50%;        /* make the image circular */
-      transition: transform 320ms ease, filter 320ms ease; /* smooth zoom */
-      will-change: transform;
-    }
+  display: block;
+  width: 100%;
+  max-width: clamp(180px, 26vw, 300px); /* responsive cap */
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 320ms ease, filter 320ms ease;
+  will-change: transform;
+}
+
+/* Responsive portrait sizing tweaks */
+@media (min-width: 1200px) {
+  .portrait { max-width: 340px; }
+}
+@media (max-width: 380px) {
+  .portrait { max-width: 160px; }
+}
     @media (min-width: 860px) { .hero { grid-template-columns: 1.25fr 0.75fr; } .portrait { justify-self: end; } }
     /* About grid under About section */
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 12px; }
@@ -296,7 +307,26 @@ footer a:hover { color: #fff; text-decoration: underline; }
     .portrait-frame:hover .portrait { transform: scale(1.06); }
     .portrait-frame:hover::after { opacity: 1; }
 
-  </style>
+/* Mobile nav polish: full-width dropdown and bigger tap targets */
+@media (max-width: 860px) {
+  header .nav { position: relative; }
+  header nav ul {
+    left: var(--pad);
+    right: var(--pad);
+    top: 56px;
+    padding: 10px;
+    gap: 4px;
+    z-index: 60; /* keep above hero */
+  }
+  header nav li a {
+    display: block;
+    padding: 10px 12px; /* larger touch target */
+    border-radius: 8px;
+  }
+  header nav li a:hover { background: rgba(255,255,255,0.06); }
+}
+
+</style>
 </head>
 <body>
   <header>
@@ -321,8 +351,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
       <div>
         <div class="kicker">Health Economist & Data Scientist</div>
         <h1>Shadi Seyedi, PhD</h1>
-        <p class="muted">HEOR · Causal Inference · Survey Analytics (MEPS/ACS)</p>
-        <p class="muted">Remote‑first; based in Ann Arbor, MI. Available to travel ~1 week/month.</p>
+        <p class="about-intro">I study how health policy shapes coverage, access, and outcomes. My work uses modern causal methods and large surveys to produce decision‑useful evidence.</p>
         <div class="hero-cta">
           <a class="btn primary" href="/assets/Shadi_Seyedi_CV.pdf">
             <span>Download CV</span>
@@ -365,7 +394,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
     </section>
     <section id="about">
       <h2>About</h2>
-      <p>I'm a health economist focused on evaluating policy impacts and value for money in healthcare. Recent work examines the Affordable Care Act's Medicaid expansion using interaction‑weighted event studies and analyzes health outcomes and expenditures in MEPS using survey‑weighted models and subgroup analysis.</p>
+      <p>I’m a health economist and data scientist focused on turning complex administrative and survey data into evidence that decision‑makers can act on. My current research examines how the Affordable Care Act’s Medicaid expansion changed coverage, access, and use of care for U.S.-born and foreign‑born adults. Methodologically, I work with modern difference‑in‑differences and event‑study designs that account for staggered policy timing, and I pair those designs with survey‑weighted estimation and design‑based standard errors. I enjoy the unglamorous parts of analysis—clean measurement, careful checks for pre‑trends, robustness to alternative cohorts and specifications, and transparent uncertainty communication. Beyond research, I’m motivated by work that lowers administrative burden and makes programs easier to use, particularly for immigrants and other groups who face documentation and language barriers. I have experience collaborating with clinicians and policy teams, teaching microeconomics and labor economics, and building lightweight tools in R and Python to share results. I value open, reproducible workflows, clear writing, and pragmatic recommendations that acknowledge trade‑offs. I’m based in Ann Arbor, MI, work primarily remotely, and am open to short travel for collaboration and presentations.</p>
       <p class="muted">Methods of interest: identification in staggered adoption settings; survey design & variance estimation; budget impact modeling; decision‑useful evidence for payers and providers.</p>
       <p class="interests"><strong>Interests:</strong> health policy & immigrant health equity · causal inference · HEOR · philosophy · classical music · nature & animals · pottery & woodworking · community</p>
 
@@ -401,7 +430,6 @@ footer a:hover { color: #fff; text-decoration: underline; }
 
     
 
-    
     
 
     <section id="research">
@@ -542,7 +570,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
       </ul>
 
       <h3 class="subhead">
-        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v16l4-3h14a2 2 0 002-2V4a2 2 0 00-2-2zm-4 9H8V9h8v2z"/></svg>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v16l4-3h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-4 9H8V9h8v2z"/></svg>
         Training & Certificates
       </h3>
 <ul class="plain train-list timeline">
