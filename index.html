@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://shadi-sadie.github.io/shadi-plain-site/" />
   <meta property="og:image" content="https://shadi-sadie.github.io/shadi-plain-site/assets/og-image.jpg" />
-  <meta name="theme-color" content="#0e1116" />
+  <meta name="theme-color" content="#495F73" \/>
 
   <style>
     :root {
@@ -33,13 +33,14 @@
     }
 
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0e1116;
-        --text: #e9e9ea;
-        --muted: #a6aab1;
-        --link: #7aa2ff;
-      }
-    }
+  /* Lock palette to light on devices set to dark mode so header/bg don't flip */
+  :root {
+    --bg: #ffffff;
+    --text: #0b0b0c;
+    --muted: #5b5f66;
+    --link: var(--slate);
+  }
+}
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -59,10 +60,24 @@
     .menu-btn { display: none; background: none; border: 1px solid #263041; color: #fff; padding: 8px 10px; border-radius: 10px; }
 
     @media (max-width: 860px) {
-      .menu-btn { display: inline-block; }
-      header nav ul { display: none; position: absolute; top: 56px; right: 20px; background: var(--slate); padding: 14px; border: 1px solid #273043; border-radius: 12px; flex-direction: column; gap: 12px; }
-      #topnav.open nav ul { display: flex; }
-    } 
+  .menu-btn { display: inline-block; }
+  header .nav { position: relative; }
+  header nav ul {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px); /* sit right below the header height */
+    left: var(--pad);
+    right: var(--pad);
+    background: var(--slate);
+    padding: 10px;
+    border: 1px solid #273043;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 60; /* keep above hero */
+  }
+  #topnav.open nav ul { display: flex; }
+} 
     nav a { color: rgba(255,255,255,0.92); text-decoration: none; opacity: 0.95; }
     nav a[aria-current="page"], nav a:hover { color: #fff; opacity: 1; text-decoration: none; }
     /* Nav hover underline */
@@ -313,7 +328,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
   header nav ul {
     left: var(--pad);
     right: var(--pad);
-    top: 56px;
+    top: calc(100% + 8px);
     padding: 10px;
     gap: 4px;
     z-index: 60; /* keep above hero */
