@@ -4,79 +4,298 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Shadi Seyedi, PhD — Health Economist & Data Scientist</title>
-  <meta name="description" content="Health Economist & Data Scientist (HEOR, causal inference, survey analytics). Remote-first; based in Ann Arbor, MI.">
-  
+  <meta name="description" content="Health Economist & Data Scientist (HEOR, causal inference, survey analytics). Remote-first; based in Ann Arbor, MI." />
+
   <!-- Open Graph / SEO -->
   <meta property="og:title" content="Shadi Seyedi, PhD — Health Economist & Data Scientist" />
   <meta property="og:description" content="HEOR • Causal Inference • Survey Analytics (MEPS/ACS). Remote-first; based in Ann Arbor, MI." />
   <meta property="og:type" content="website" />
-<meta property="og:url" content="https://shadi-sadie.github.io/shadi-plain-site/" />
-<meta property="og:image" content="https://shadi-sadie.github.io/shadi-plain-site/assets/og-image.jpg" />
+  <meta property="og:url" content="https://shadi-sadie.github.io/shadi-plain-site/" />
+  <meta property="og:image" content="https://shadi-sadie.github.io/shadi-plain-site/assets/og-image.jpg" />
   <meta name="theme-color" content="#0e1116" />
 
   <style>
- :root {
-    --bg: #F9FAFB;        /* almost white background */
-    --panel: #E5E7EB;     /* light gray panels */
-    --text: #1F2937;      /* dark gray text (not pure black) */
-    --muted: #6B7280;     /* muted gray text */
-    --accent: #A69972;    /* soft desaturated blue-green */
-    --accent-2: #7BAFAF;  /* lighter blue-green accent */
-    --link: #4B7F82;      /* deep teal link color */
-    --maxw: 1100px;
-    --radius: 16px;
-     }
+    :root {
+      --bg: #ffffff;
+      --text: #0b0b0c;
+      --muted: #5b5f66;
+      --link: var(--slate); /* accessible blue */
+      --maxw: clamp(720px, 92vw, 1040px);   /* narrow column for readability */
+      --pad: 20px;
+      /* palette */
+      --brand: #171C26;   /* deep navy for emphasis */
+      --accent: #7394BF;  /* mid blue */
+      --accent-2: #A69A77;/* warm neutral */
+      --slate: #495F73;   /* slate for links/nav */
+      --pale: #93ABBF;    /* light blue */
+      --line: color-mix(in oklab, var(--text) 10%, transparent);
+      --line-strong: color-mix(in oklab, var(--accent) 35%, transparent);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1116;
+        --text: #e9e9ea;
+        --muted: #a6aab1;
+        --link: #7aa2ff;
+      }
+    }
+
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    img { max-width: 100%; height: auto; border-radius: 12px; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+    html { scroll-behavior: smooth; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial; }
+    a { color: var(--link); text-underline-offset: 3px; }
+    img { max-width: 100%; height: auto; }
 
-    /* Header */
-    header { position: sticky; top: 0; backdrop-filter: blur(10px); background: rgba(14,17,22,0.8); border-bottom: 1px solid #1f2631; z-index: 50; }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: var(--slate); border-top: 2px solid var(--accent-2); border-bottom: 1px solid #1f2631; }
+    /* nav inside header */
+    header .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    header nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
+    header nav a { color: rgba(255,255,255,0.92); text-decoration: none; }
+    header nav a:hover { color: #fff; }
     .brand { font-weight: 700; letter-spacing: 0.3px; }
-    .brand span { color: var(--accent); }
-    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
-    nav a { color: var(--text); opacity: 0.9; }
-    nav a:hover { opacity: 1; }
-    .menu-btn { display: none; background: none; border: 1px solid #263041; color: var(--text); padding: 8px 10px; border-radius: 10px; }
-
-    /* Hero */
-    .hero { padding: 64px 0 28px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
-    .hero h1 { font-size: clamp(28px, 4.5vw, 44px); margin: 0 0 10px; line-height: 1.1; }
-    .kicker { color: var(--accent); font-weight: 600; letter-spacing: 0.3px; margin-bottom: 8px; }
-    .lead { color: var(--muted); font-size: 1.05rem; margin: 10px 0 16px; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid #2a3446; background: #19202b; color: var(--text); font-weight: 600; }
-    .btn.primary { background: linear-gradient(180deg, #1d2430, #151a22); border-color: #313a4a; box-shadow: 0 8px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03); }
-    .note { color: var(--muted); font-size: 0.95rem; margin-top: 6px; }
-
-    /* Sections */
-    section { padding: 42px 0; border-top: 1px solid #1f2631; }
-    h2 { font-size: clamp(22px, 3vw, 30px); margin: 0 0 18px; }
-    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); }
-    .card { grid-column: span 12; background: var(--panel); padding: 18px; border: 1px solid #1f2631; border-radius: var(--radius); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
-    .card h3 { margin-top: 0; }
-
-    /* Two/three column helpers */
-    .col-6 { grid-column: span 6; }
-    .col-4 { grid-column: span 4; }
-
-    /* Lists */
-    .pill { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #1a2230; border: 1px solid #283145; color: var(--muted); font-size: 0.9rem; margin: 4px 6px 0 0; }
-    .meta { color: var(--muted); font-size: 0.95rem; }
-
-    /* Footer */
-    footer { padding: 34px 0 60px; color: var(--muted); text-align: center; }
+    .brand span { color: var(--accent-2); }
+    .menu-btn { display: none; background: none; border: 1px solid #263041; color: #fff; padding: 8px 10px; border-radius: 10px; }
 
     @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; }
-      nav ul { display: none; }
       .menu-btn { display: inline-block; }
-      nav.open ul { display: flex; flex-direction: column; gap: 12px; position: absolute; top: 56px; right: 20px; background: #121720; padding: 14px; border: 1px solid #273043; border-radius: 12px; }
+      header nav ul { display: none; position: absolute; top: 56px; right: 20px; background: var(--slate); padding: 14px; border: 1px solid #273043; border-radius: 12px; flex-direction: column; gap: 12px; }
+      #topnav.open nav ul { display: flex; }
+    } 
+    nav a { color: rgba(255,255,255,0.92); text-decoration: none; opacity: 0.95; }
+    nav a[aria-current="page"], nav a:hover { color: #fff; opacity: 1; text-decoration: none; }
+    /* Nav hover underline */
+    header nav a { position: relative; }
+    header nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease; }
+    header nav a:hover::after, header nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+
+    /* Nav layout: brand + menu + list */
+    #topnav { display: flex; align-items: center; justify-content: space-between; position: relative; }
+    .brand { font-weight: 700; letter-spacing: 0.3px; color: #fff; }
+    .brand span { color: var(--accent-2); }
+    
+    
+    .menu-btn { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; }
+
+    h1 { font-size: clamp(22px, 4.2vw, 32px); line-height: 1.15; margin: 10px 0 6px; font-weight: 700; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; margin: 28px 0 35px; color: var(--slate); }
+   /* Section heading polish */
+  section > h2 { display: flex; align-items: center; gap: 10px; position: relative; }
+  section > h2 .hicon { width: 40px; height: 40px; color: var(--accent-2); }
+  section > h2::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 48px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+  section:hover > h2::after, section:focus-within > h2::after { transform: scaleX(1); }
+    p, li { color: var(--text); }
+    .muted { color: var(--muted); }
+    .kicker { color: var(--accent-2); font-weight: 600; letter-spacing: 0.02em; }
+
+    .hero { position: relative; margin-top: 0; padding: 54px 0 20px; display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center; isolation: isolate; z-index: 0; }
+    .hero::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100%; background: linear-gradient(180deg, color-mix(in oklab, var(--pale) 40%, transparent), transparent 70%); pointer-events: none; z-index: -1; }
+    /* .hero-band removed: using .hero::before for full‑bleed tint */
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { border: 1px solid currentColor; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; line-height: 1; display: inline-flex; align-items: center; gap: 8px; transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease; will-change: transform; }
+    .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: 0 4px 12px rgba(23,28,38,0.16); }
+    /* CTA hover/active/focus */
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(23,28,38,0.10); background: color-mix(in oklab, var(--text) 8%, transparent); color: var(--text); border-color: var(--text); }
+    .btn:active { transform: translateY(0); box-shadow: 0 3px 8px rgba(23,28,38,0.10); }
+    .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(23,28,38,0.22); background: color-mix(in oklab, var(--text) 92%, transparent); color: var(--bg); }
+    .btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
+    /* CTA inline icons */
+    .btn svg.chev, .btn svg.mail { width: 18px; height: 18px; flex: 0 0 auto; opacity: 0; transform: translateX(-4px); transition: transform 180ms ease, opacity 180ms ease; }
+    .btn:hover svg.chev, .btn:hover svg.mail { opacity: 1; transform: translateX(0); }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .btn { transition: none; }
     }
+
+    /* Icons & contact */
+    .icon { width: 20px; height: 20px; display: inline-block; vertical-align: text-bottom; fill: currentColor; }
+    .contact-list { list-style: none; padding-left: 0; margin: 0; }
+    .contact-list li { margin: 8px 0; }
+
+    /* Social icon row (like your main site) */
+    .social { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+    .iconbtn { width: 44px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--muted); color: var(--muted); text-decoration: none; }
+    .iconbtn:hover { border-color: var(--text); color: var(--text); background: color-mix(in oklab, var(--text) 7%, transparent); }
+    .iconbtn .icon { width: 22px; height: 22px; }
+    /* Align photo + icons column */
+    .hero-side { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .social.center { justify-content: center; }
+    /* Portrait + responsive hero */
+    .portrait-frame {
+      position: relative;
+      overflow: hidden; /* needed for zoom crop */
+      padding: 6px; /* ring thickness */
+      border-radius: 9999px; /* fully circle */
+      background:
+        linear-gradient(var(--bg), var(--bg)) padding-box,
+        linear-gradient(135deg,
+          color-mix(in oklab, var(--accent) 35%, transparent),
+          color-mix(in oklab, var(--accent-2) 35%, transparent)) border-box;
+      border: 2px solid transparent; /* shows the gradient ring */
+      box-shadow: 0 8px 24px rgba(23,28,38,0.08); /* soft lift */
+    }
+    .portrait {
+      display: block;
+      width: 100%;
+      max-width: 320px;          /* overall size cap */
+      aspect-ratio: 1 / 1;       /* square crop for circle */
+      object-fit: cover;         /* fill the circle nicely */
+      border-radius: 50%;        /* make the image circular */
+      transition: transform 320ms ease, filter 320ms ease; /* smooth zoom */
+      will-change: transform;
+    }
+    @media (min-width: 860px) { .hero { grid-template-columns: 1.25fr 0.75fr; } .portrait { justify-self: end; } }
+    /* About grid under About section */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 12px; }
+    @media (min-width: 860px) { .about-grid { grid-template-columns: 1fr 1fr; } .about-card:nth-child(n+2) { border-left: 1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-left: 16px; } }
+    .about-card h3 { margin: 0 0 6px; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
+   
+   .about-card {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent-2); /* thin accent stripe */
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+}
+.about-card:hover {
+  border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+  box-shadow: 0 10px 18px rgba(23,28,38,0.06);
+  transform: translateY(-2px);
+}
+.about-card .hicon { width: 40px; height: 40px; color: var(--accent-2); }
+
+    .hicon { width: 22px; height: 22px; display: inline-block; flex: 0 0 auto; }
+    /* Compact chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .chip { border: 1px solid color-mix(in oklab, var(--text) 18%, transparent); border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; color: var(--muted); }
+    .chips-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+    .chips-row .meta { margin-right: 2px; }
+    /* Education definition list */
+    .edu { display:grid; gap:6px; margin:0; }
+    .edu > div { display:grid; grid-template-columns:auto 1fr; gap:10px; }
+    .edu dt { font-weight:600; white-space:nowrap; }
+    .edu dd { margin:0; color:var(--muted); } 
+    /* About interest line */
+    #about p.interests { margin-top:6px; font-style: italic; color: color-mix(in oklab, var(--muted) 85%, transparent); }
+    /* Compact meta paragraphs in About */
+    #about .meta { margin:6px 0; }
+    /* Teaching styling */
+    .teach-list { list-style: none; padding-left: 0; margin: 0; }
+    .teach-list li { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+    .teach-icon { width: 18px; height: 18px; color: var(--accent); }
+
+    /* Subhead style for mini-sections */
+    .subhead { margin: 12px 0 10px; font-size: 0.9rem; font-weight: 600; color: var(--slate); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* Badge pill */
+    .badge { background: color-mix(in oklab, var(--accent) 12%, transparent); border: 1px solid color-mix(in oklab, var(--accent) 28%, transparent); color: var(--slate); border-radius: 999px; padding: 2px 8px; font-size: 0.8rem; }
+
+    /* Awards layout */
+    .awards { display: grid; gap: 8px; margin: 0; }
+    .awards > div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: baseline; }
+    .awards dt { font-weight: 600; color: var(--muted); }
+    .awards dd { margin: 0; }
+
+    /* Presentation/Training lists */
+    .present-list li, .train-list li { display: flex; align-items: baseline; gap: 8px; margin: 6px 0; }
+    /* Minimal timeline look for Presentations & Training */
+    /* Minimal timeline look for Presentations & Training */
+.timeline {
+  position: relative;
+  margin: 8px 0 0;
+  padding-left: 18px;                 /* space for the timeline line */
+  border-left: 1px solid var(--line); /* the vertical line */
+}
+.timeline li {
+  position: relative;
+  margin: 10px 0;
+  display: grid;                      /* align year + text */
+  grid-template-columns: 72px 1fr;    /* year column + details */
+  gap: 12px;
+  align-items: baseline;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  /* center the 8px dot on the 1px border-left given 18px padding-left:  -18 - 4 + ~0.5 ≈ -22px */
+  left: -8px;
+  top: 0.95em;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+.timeline .badge {
+  justify-self: start;
+  min-width: 56px;
+  text-align: center;
+  margin-right: 6px;
+}
+
+/* Certificate link (instead of a button) */
+.cert-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-left: 10px; font-size: 0.9rem;
+  color: var(--link); text-decoration: none;
+  position: relative; padding-bottom: 2px;
+}
+.cert-link .icon { width: 16px; height: 16px; }
+.cert-link::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  height: 2px; width: 100%; background: var(--accent-2);
+  transform: scaleX(0); transform-origin: left; transition: transform 180ms ease;
+}
+.cert-link:hover::after, .cert-link:focus-visible::after { transform: scaleX(1); }
+.cert-link:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+
+    /* Cards for Projects */
+    .cardgrid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 860px) { .cardgrid { grid-template-columns: 1fr 1fr; } }
+    .card { border: 1px solid var(--line); border-radius: 12px; padding: 12px; transition: border-color 150ms ease, transform 150ms ease; }
+    .card:hover { border-color: color-mix(in oklab, var(--accent) 35%, transparent); transform: translateY(-2px); }
+    .thumb { aspect-ratio: 16/9; border: 1px solid color-mix(in oklab, var(--accent) 28%, transparent); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+    .thumb svg { width: 44px; height: 44px; color: var(--accent); }
+    .card h3 { margin: 6px 0 4px; font-size: 1rem; }
+    .card .meta { margin-bottom: 6px; display: inline-block; }
+    .actions a { margin-right: 10px; }
+
+    section { padding: 20px 0; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
+    ul.plain { list-style: none; padding-left: 0; margin: 0; }
+    ul.plain li { margin: 6px 0; }
+    .meta { font-size: 0.95rem; color: var(--muted); }
+        .abstract { color: var(--muted); margin: 6px 0 0; }
+
+
+footer {
+  background: var(--bg);
+  color: rgba(255,255,255,0.92);
+  border-top: 2px solid var(--accent-2);
+  padding: 10px 0;
+  font-size: 0.95rem;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.08); /* ← the thin shadow */
+}
+footer a { color: rgba(255,255,255,0.92); text-decoration: none; }
+footer a:hover { color: #fff; text-decoration: underline; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+  /* Responsive overrides for hero/about and cards */
+    @media (min-width: 700px) {
+      .hero { grid-template-columns: 1.25fr 0.75fr; }
+      .portrait { justify-self: end; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .about-card:nth-child(n+2) { border-left: 1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-left: 16px; }
+    }
+    .cardgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    /* Portrait hover overlay */
+    .portrait-frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(120% 80% at 50% 30%, rgba(0,0,0,0.10), rgba(0,0,0,0) 55%);
+      opacity: 0; transition: opacity 320ms ease; }
+    .portrait-frame:hover .portrait { transform: scale(1.06); }
+    .portrait-frame:hover::after { opacity: 1; }
+
   </style>
 </head>
 <body>
@@ -87,146 +306,295 @@
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
+          <li><a href="#research">Research</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#publications">Publications</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="/assets/Shadi_Seyedi_CV.pdf">CV</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#presentations">Presentations & Training</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
+  <main id="main" class="wrap" tabindex="-1">
     <section class="hero" id="home">
       <div>
         <div class="kicker">Health Economist & Data Scientist</div>
-        <h1>HEOR • Causal Inference • Survey Analytics (MEPS/ACS)</h1>
-        <p class="lead">I build transparent, policy-relevant analyses using modern DiD/event-study estimators and practical HEOR models. Remote‑first, based in Ann Arbor, MI; available to travel ~1 week/month.</p>
-        <div class="cta-row">
-          <a class="btn primary" href="/assets/Shadi_Seyedi_CV.pdf">Download CV</a>
-          <a class="btn" href="#contact">Contact</a>
-          <a class="btn" href="https://github.com/Shadi-Sadie" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/shadi-seyedi" target="_blank" rel="noopener">LinkedIn</a>
+        <h1>Shadi Seyedi, PhD</h1>
+        <p class="muted">HEOR · Causal Inference · Survey Analytics (MEPS/ACS)</p>
+        <p class="muted">Remote‑first; based in Ann Arbor, MI. Available to travel ~1 week/month.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="/assets/Shadi_Seyedi_CV.pdf">
+            <span>Download CV</span>
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12m-5-5l5 5-5 5"/></svg>
+          </a>
+          <a class="btn" href="mailto:sseyedi1@umbc.edu">
+            <span>Contact</span>
+            <svg class="mail" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-width="2" d="M3 5h18v14H3z"/>
+              <path fill="none" stroke="currentColor" stroke-width="2" d="M3 7l9 6 9-6"/>
+            </svg>
+          </a>
         </div>
-        <div class="note">PhD (2025). Open to remote HEOR / data science / policy research roles.</div>
+        <!-- social icons moved under portrait -->
       </div>
-      <div>
-        <!-- Replace headshot.jpg with your image at /assets/headshot.jpg -->
-        <img src="assets/headshot.jpg" alt="Portrait of Shadi Seyedi" />
+      <div class="hero-side">
+        <div class="portrait-frame"><img class="portrait" src="assets/headshot.jpg" alt="Portrait of Shadi Seyedi" /></div>
+        <div class="social center" aria-label="Social links">
+          <a class="iconbtn" href="mailto:sseyedi1@umbc.edu">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span class="sr-only">Email</span>
+          </a>
+          <a class="iconbtn" href="https://github.com/Shadi-Sadie" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.35-3.37-1.35-.45-1.16-1.1-1.47-1.1-1.47-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.64-1.37-2.22-.26-4.55-1.14-4.55-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.9-1.32 2.74-1.05 2.74-1.05.56 1.4.21 2.44.11 2.7.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.79-4.57 5.04.36.32.68.95.68 1.92 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+          <a class="iconbtn" href="https://www.linkedin.com/in/shadiseyedi/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4v15h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.84-2.2 3.8-2.2 4.06 0 4.8 2.67 4.8 6.14V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.5V23h-4V8z"/>
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+        </div>
       </div>
     </section>
-
-    <!-- ABOUT -->
     <section id="about">
       <h2>About</h2>
-      <div class="grid">
-        <div class="card">
-          <p>I'm a health economist focused on evaluating policy impacts and value for money in healthcare. My recent work examines the Affordable Care Act's Medicaid expansion using interaction‑weighted event studies, and analyzes health outcomes and expenditure patterns in MEPS with survey‑weighted models and subgroup analysis.</p>
-          <p>Method interests: identification in staggered adoption settings, survey design & variance estimation, budget impact modeling, and decision‑useful evidence generation for payers and providers.</p>
+      <p>I'm a health economist focused on evaluating policy impacts and value for money in healthcare. Recent work examines the Affordable Care Act's Medicaid expansion using interaction‑weighted event studies and analyzes health outcomes and expenditures in MEPS using survey‑weighted models and subgroup analysis.</p>
+      <p class="muted">Methods of interest: identification in staggered adoption settings; survey design & variance estimation; budget impact modeling; decision‑useful evidence for payers and providers.</p>
+      <p class="interests"><strong>Interests:</strong> health policy & immigrant health equity · causal inference · HEOR · philosophy · classical music · nature & animals · pottery & woodworking · community</p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>
+            <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 3L2 9l10 6 10-6-10-6zm0 13L4 10.5V14l8 4 8-4v-3.5L12 16z"/>
+            </svg>
+            Education
+          </h3>
+          <dl class="edu">
+            <div><dt>Ph.D. · 2025</dt><dd>UMBC — Public Policy</dd></div>
+            <div><dt>M.Sc. · 2019</dt><dd>University of Delaware — Econ &amp; Econometrics</dd></div>
+            <div><dt>B.Sc. · 2016</dt><dd>Ferdowsi University — Economic Sciences</dd></div>
+          </dl>
+        </div>
+        <div class="about-card">
+          <h3>
+            <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58-2-3.46-2.39.97c-.47-.37-1-.68-1.57-.92L14 3h-4l-.21 2.07c-.57.24-1.1.55-1.57.92l-2.39-.97-2 3.46 2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L3.26 14.5l2 3.46 2.39-.97c.47.37 1 .68 1.57.92L10 20h4l.21-2.07c.57-.24 1.1-.55 1.57-.92l2.39.97 2-3.46-2.03-1.58zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/>
+            </svg>
+            Skills
+          </h3>
+          <p class="meta"><strong>Methods:</strong> DiD · Event studies · Survey design · GLM/Mixed · Causal ML</p>
+          <p class="meta"><strong>Tools:</strong> R · Stata · Python · SAS · SQL · Git</p>
+          <p class="meta"><strong>Data:</strong> MEPS · ACS · ICD‑10 · CPT · EHR · Claims</p>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="grid">
-        <div class="card col-6">
-          <h3>Tools & Languages</h3>
-          <p class="meta">Python, R, Stata, SQL, Git, LaTeX</p>
-          <span class="pill">pandas</span>
-          <span class="pill">statsmodels</span>
-          <span class="pill">scikit-learn</span>
-          <span class="pill">PyTorch</span>
-          <span class="pill">TensorFlow</span>
-        </div>
-        <div class="card col-6">
-          <h3>Methods</h3>
-          <p class="meta">Causal inference (DiD: Sun & Abraham; Callaway & Sant’Anna), survey methods, GLMs, mixed models, causal ML</p>
-          <span class="pill">Event studies</span>
-          <span class="pill">Heterogeneity</span>
-          <span class="pill">Design effects</span>
-          <span class="pill">Bootstrap / clustering</span>
-        </div>
-        <div class="card col-12">
-          <h3>HEOR</h3>
-          <p class="meta">Budget impact & cost‑effectiveness structure, input sourcing, uncertainty (one‑way, PSA), communication for decisions</p>
-          <span class="pill">BIM</span>
-          <span class="pill">CEA</span>
-          <span class="pill">Sensitivity analysis</span>
-        </div>
-      </div>
+    
+
+    
+
+    
+    
+
+    <section id="research">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1v5h5"/></svg>
+        Research
+      </h2>
+            <article>
+        <p><strong>Medicaid Expansion and Coverage by Nativity: Evidence from Modern DiD</strong><br/>
+          <span class="meta">Working paper (2025) — <a href="/assets/medicaid_expansion_wp.pdf">PDF</a> · <a href="/assets/medicaid_wp_slides.pdf">Slides</a></span>
+        </p>
+        <p class="abstract">We evaluate how the Affordable Care Act’s Medicaid expansion affected insurance coverage for U.S.-born and foreign-born adults using the American Community Survey (2011–2019). Leveraging interaction‑weighted difference‑in‑differences estimators (Sun & Abraham), we decompose effects by cohort and event time, examine pre‑trend balance, and report cohort‑specific ATTs to address staggered adoption. We show where two‑way fixed effects would bias estimates and provide robustness checks (placebo cohorts, alternative timing, weighting). Results highlight larger gains among long‑residing foreign‑born adults and heterogeneous effects by state policy environment, with implications for outreach and administrative burden reduction.</p>
+      </article>
+
+      <article>
+        <p><strong>Affordable Care Act and Cancer Screening among Foreign‑born vs Native</strong><br/>
+          <span class="meta">Working paper</span>
+        </p>
+        <p class="abstract">This study investigates whether ACA‑era coverage expansions and cost‑sharing protections shifted preventive cancer screening among foreign‑born versus U.S.‑born adults. Using modern DiD with state‑by‑year staggered adoption, we analyze screening outcomes (mammography, Pap tests, and colorectal screening) with survey weights and design‑based standard errors. We explore heterogeneity by length of U.S. residence, English proficiency, and Medicaid expansion timing. Placebo timing and alternative functional forms are used to probe identification. The findings clarify where gains accrued, where gaps persisted, and which policy levers—insurance continuity, primary care access, and navigation supports—appear most salient.</p>
+      </article>
+
+      <article>
+        <p><strong>The Impact of Medicaid Expansion on Health Outcomes: U.S.‑Born and Foreign‑Born Communities</strong><br/>
+          <span class="meta">Working paper</span>
+        </p>
+        <p class="abstract">We examine downstream outcomes associated with Medicaid expansion—access to a usual source of care, emergency department visits, hospitalizations, and self‑reported health—stratified by nativity. Using MEPS and replicate weights, we estimate survey‑weighted GLMs and difference‑in‑differences/event‑study models with design‑based standard errors. We assess parallel trends in the pre‑period, probe sensitivity to cohort trimming and alternative exposure definitions, and present subgroup results by chronic condition status. The analysis distinguishes utilization changes from compositional shifts and discusses mechanisms (affordability, provider networks) alongside limitations, including limited power for rare outcomes and potential migration confounding.</p>
+      </article>
+
+      <article>
+        <p><strong>Unequal Burdens: Analyzing Baltimore City’s Sales Tax Disparities</strong> (with P. Bennett)<br/>
+          <span class="meta">Working paper</span>
+        </p>
+        <p class="abstract">This paper maps neighborhood‑level differences in effective sales tax burden in Baltimore City, combining point‑of‑sale location data with demographic and income characteristics. We construct tract‑level exposure measures that reflect where residents actually shop, not just where they live, and examine associations with distance to retail clusters, transit access, and income. Results suggest more regressive effective burdens in transit‑sparse areas and neighborhoods with limited retail competition. We discuss policy options—targeted credits, improved transit links, and place‑based retail incentives—and consider distributional trade‑offs when localities rely on consumption taxes to fund public services.</p>
+      </article>
     </section>
 
-    <!-- PROJECTS -->
+
     <section id="projects">
-      <h2>Selected Projects</h2>
-      <div class="grid">
-        <article class="card col-6">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
+        Projects
+      </h2>
+      <div class="cardgrid">
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v2H3V3zm0 5h18v2H3V8zm0 5h12v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+          </div>
           <h3>Medicaid Expansion: Modern DiD on ACS (2011–2019)</h3>
-          <p class="meta">Policy impact on coverage under staggered adoption using interaction‑weighted event studies; pre‑trend diagnostics and cohort‑specific ATTs.</p>
-          <ul>
-            <li>Sun & Abraham IWE; cohort/event‑time decomposition</li>
-            <li>Robustness: placebo cohorts, alternative timing, weights</li>
-          </ul>
-          <p><a href="/assets/medicaid_did_2pager.pdf">2‑page brief</a> · <a href="/assets/medicaid_did_slides.pdf">Slides</a> · <a href="https://github.com/your-repo-here" target="_blank" rel="noopener">Code</a></p>
-        </article>
-        <article class="card col-6">
+          <span class="meta">Interaction‑weighted event studies; pre‑trend diagnostics; cohort‑specific ATTs.</span>
+          <div class="actions">
+            <a href="/assets/medicaid_did_2pager.pdf">2‑page brief</a>
+            <a href="/assets/medicaid_did_slides.pdf">Slides</a>
+            <a href="https://github.com/your-repo-here" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 19h16v2H4v-2zM6 4h2v12H6V4zm5 4h2v8h-2V8zm5-3h2v11h-2V5z"/></svg>
+          </div>
           <h3>MEPS Health Outcomes & Expenditures</h3>
-          <p class="meta">Survey‑weighted models for ER/hospitalization outcomes, chronic‑condition subgroup analysis, and expenditure decomposition across sectors.</p>
-          <ul>
-            <li>svy design & replicate weights; design‑based SEs</li>
-            <li>Heterogeneity by chronic condition; ER decline in subgroup</li>
-          </ul>
-          <p><a href="/assets/meps_outcomes_summary.pdf">Summary</a> · <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a></p>
-        </article>
-        <article class="card col-6">
+          <span class="meta">Survey‑weighted models; subgroup analysis; sectoral expenditure decomposition.</span>
+          <div class="actions">
+            <a href="/assets/meps_outcomes_summary.pdf">Summary</a>
+            <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
+          </div>
           <h3>HEOR Budget Impact Mini‑Model (Python)</h3>
-          <p class="meta">Toy model demonstrating structure, inputs, and uncertainty (one‑way + PSA) for payer‑oriented decision support.</p>
-          <ul>
-            <li>Spreadsheet‑like inputs; reproducible outputs</li>
-            <li>Sensitivity tornado + PSA histogram</li>
-          </ul>
-          <p><a href="/assets/heor_bim_readme.pdf">ReadMe</a> · <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a></p>
-        </article>
-      </div>
-    </section>
-
-    <!-- PUBLICATIONS -->
-    <section id="publications">
-      <h2>Publications & Working Papers</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Medicaid Expansion and Coverage by Nativity: Evidence from Modern DiD</h3>
-          <p class="meta">Working paper (2025) — PDF & slides</p>
-          <p><a href="/assets/medicaid_expansion_wp.pdf">PDF</a> · <a href="/assets/medicaid_wp_slides.pdf">Slides</a></p>
+          <span class="meta">Toy model for BIM structure, inputs, one‑way & PSA uncertainty.</span>
+          <div class="actions">
+            <a href="/assets/heor_bim_readme.pdf">ReadMe</a>
+            <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="grid">
-        <div class="card">
-          <p>Email: <a href="mailto:shadi.seyedi@gmail.com">shadi.seyedi@gmail.com</a></p>
-          <p>LinkedIn: <a href="https://www.linkedin.com/in/shadi-seyedi" target="_blank" rel="noopener">/in/shadi-seyedi</a></p>
-          <p>GitHub: <a href="https://github.com/Shadi-Sadie" target="_blank" rel="noopener">@Shadi-Sadie</a></p>
-        </div>
-      </div>
+    <section id="teaching">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 3L1 9l11 6 11-6-11-6zm-7 8v4c4 2.5 10 2.5 14 0v-4l-7 4-7-4z"/>
+        </svg>
+        Teaching
+      </h2>
+      <ul class="teach-list">
+        <li>
+          <svg class="teach-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M4 5h14a2 2 0 0 1 2 2v11H6a2 2 0 0 0-2 2H2V7a2 2 0 0 1 2-2zm14 11V7H4v11.17A3.99 3.99 0 0 1 6 17h12z"/>
+          </svg>
+          Microeconomics
+        </li>
+        <li>
+          <svg class="teach-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M4 5h14a2 2 0 0 1 2 2v11H6a2 2 0 0 0-2 2H2V7a2 2 0 0 1 2-2zm14 11V7H4v11.17A3.99 3.99 0 0 1 6 17h12z"/>
+          </svg>
+          Labor Economics
+        </li>
+      </ul>
     </section>
+
+    <section id="awards">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17 3H7v4H3v4a7 7 0 006 6.92V21l3-1 3 1v-3.08A7 7 0 0021 11V7h-4V3zm-2 4V5h-6v2H5v2a5 5 0 0010 0V7h-0z"/></svg>
+        Honors & Awards
+      </h2>
+      <dl class="awards">
+        <div><dt>2024</dt><dd>Social Security Administration Dissertation Grant (RDRC) <span class="badge">$7,000</span></dd></div>
+        <div><dt>2024</dt><dd>Judith A. Shinogle Memorial Fellowship</dd></div>
+        <div><dt>2024</dt><dd>Dean’s Summer Graduate Assistant Fund <span class="badge">$6,000</span></dd></div>
+        <div><dt>2024</dt><dd>Graduate Student Association Professional Development Grant <span class="badge">$750</span></dd></div>
+        <div><dt>2024</dt><dd>Center for Social Science Scholarship Small Grant <span class="badge">$1,250</span></dd></div>
+        <div><dt>2024</dt><dd>School of Public Policy Travel Award <span class="badge">$1,000</span></dd></div>
+        <div><dt>2024</dt><dd>Adam Yarmolinsky Fellowship <span class="badge">$1,500</span></dd></div>
+        <div><dt>2016</dt><dd>Graduated with top honors</dd></div>
+        <div><dt>2012</dt><dd>Full undergraduate scholarship</dd></div>
+      </dl>
+    </section>
+
+    <section id="presentations">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V8h14v11z"/>
+        </svg>
+        Presentations & Training
+      </h2>
+
+      <h3 class="subhead">
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 100 18 9 9 0 000-18zm1 9.5l4 2.5-4 2.5V12.5zM7 10h6v2H7v-2z"/></svg>
+        Presentations
+      </h3>
+      <ul class="plain present-list timeline">
+        <li><span class="badge">2024</span> European Health Economics Association (EuHEA) PhD & Supervisor Conference</li>
+      </ul>
+
+      <h3 class="subhead">
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v16l4-3h14a2 2 0 002-2V4a2 2 0 00-2-2zm-4 9H8V9h8v2z"/></svg>
+        Training & Certificates
+      </h3>
+<ul class="plain train-list timeline">
+  <li><span class="badge">2025</span> AWS Cloud Practitioner Essentials
+    <a class="cert-link"
+       href="/assets/certs/aws_cloud_practitioner.pdf"
+       data-cert="/assets/certs/aws_cloud_practitioner.pdf"
+       target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+      </svg>
+      <span>Certificate</span>
+    </a>
+  </li>
+
+  <li><span class="badge">2022</span> Stanford Machine Learning
+    <a class="cert-link"
+       href="/assets/certs/stanford_ml.pdf"
+       data-cert="/assets/certs/stanford_ml.pdf"
+       target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+      </svg>
+      <span>Certificate</span>
+    </a>
+  </li>
+
+  <li><span class="badge">2020</span> Johns Hopkins Data Science Specialization (Coursera)
+    <a class="cert-link"
+       href="/assets/certs/jhu_data_science.pdf"
+       data-cert="/assets/certs/jhu_data_science.pdf"
+       target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+      </svg>
+      <span>Certificate</span>
+    </a>
+  </li>
+</ul>
+    </section>
+
+    
   </main>
 
   <footer>
-    <div class="wrap">© <span id="y"></span> Shadi Seyedi · Built with plain HTML/CSS on GitHub Pages</div>
-  </footer>
+  <div class="wrap">
+    <p>© <span id="y"></span> Shadi Seyedi · Plain HTML/CSS on GitHub Pages</p>
+  </div>
+</footer>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
-
-
