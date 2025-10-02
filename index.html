@@ -12,273 +12,186 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://shadi-sadie.github.io/shadi-plain-site/" />
   <meta property="og:image" content="https://shadi-sadie.github.io/shadi-plain-site/assets/og-image.jpg" />
-  <meta name="theme-color" content="#495F73" \/>
+  <meta name="theme-color" content="#0e1116" />
+
+  <!-- Favicons / PWA -->
+  <!-- SVG (crisp in modern browsers) -->
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <!-- PNG fallbacks -->
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/icons/favicon-16.png" sizes="16x16" type="image/png">
+  <!-- Legacy ICO fallback (some crawlers/older browsers) -->
+  <link rel="shortcut icon" href="assets/favicon.ico">
+  <!-- iOS homescreen icon -->
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" sizes="180x180">
+  <!-- Optional: web manifest if you add one -->
+  <!-- <link rel="manifest" href="assets/site.webmanifest"> -->
 
   <style>
     :root {
       --bg: #ffffff;
       --text: #0b0b0c;
       --muted: #5b5f66;
-      --link: var(--slate); /* accessible blue */
-      --maxw: clamp(720px, 92vw, 1040px);   /* narrow column for readability */
+      --link: var(--slate);
+      --maxw: clamp(720px, 92vw, 1040px);
       --pad: 20px;
       /* palette */
-      --brand: #171C26;   /* deep navy for emphasis */
-      --accent: #7394BF;  /* mid blue */
-      --accent-2: #A69A77;/* warm neutral */
-      --slate: #495F73;   /* slate for links/nav */
-      --pale: #93ABBF;    /* light blue */
+      --brand: #171C26;
+      --accent: #7394BF;
+      --accent-2: #A69A77;
+      --slate: #495F73;
+      --pale: #93ABBF;
       --line: color-mix(in oklab, var(--text) 10%, transparent);
       --line-strong: color-mix(in oklab, var(--accent) 35%, transparent);
     }
 
     @media (prefers-color-scheme: dark) {
-  /* Lock palette to light on devices set to dark mode so header/bg don't flip */
-  :root {
-    --bg: #ffffff;
-    --text: #0b0b0c;
-    --muted: #5b5f66;
-    --link: var(--slate);
-  }
-}
+      :root {
+        --bg: #0e1116;
+        --text: #e9e9ea;
+        --muted: #a6aab1;
+        --link: #7aa2ff;
+      }
+    }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+    }
     a { color: var(--link); text-underline-offset: 3px; }
     img { max-width: 100%; height: auto; }
 
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: var(--slate); border-top: 2px solid var(--accent-2); border-bottom: 1px solid #1f2631; }
-    /* nav inside header */
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 50; isolation: isolate;
+      backdrop-filter: blur(10px);
+      background: var(--slate);
+      border-top: 2px solid var(--accent-2);
+      border-bottom: 1px solid #1f2631;
+    }
     header .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    header nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
-    header nav a { color: rgba(255,255,255,0.92); text-decoration: none; }
-    header nav a:hover { color: #fff; }
-    .brand { font-weight: 700; letter-spacing: 0.3px; }
-    .brand span { color: var(--accent-2); }
-    .menu-btn { display: none; background: none; border: 1px solid #263041; color: #fff; padding: 8px 10px; border-radius: 10px; }
-
-    @media (max-width: 860px) {
-  .menu-btn { display: inline-block; }
-  header .nav { position: relative; }
-  header nav ul {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px); /* sit right below the header height */
-    left: var(--pad);
-    right: var(--pad);
-    background: var(--slate);
-    padding: 10px;
-    border: 1px solid #273043;
-    border-radius: 12px;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 60; /* keep above hero */
-  }
-  #topnav.open nav ul { display: flex; }
-} 
-    nav a { color: rgba(255,255,255,0.92); text-decoration: none; opacity: 0.95; }
-    nav a[aria-current="page"], nav a:hover { color: #fff; opacity: 1; text-decoration: none; }
-    /* Nav hover underline */
-    header nav a { position: relative; }
-    header nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease; }
-    header nav a:hover::after, header nav a[aria-current="page"]::after { transform: scaleX(1); }
-
-
-    /* Nav layout: brand + menu + list */
     #topnav { display: flex; align-items: center; justify-content: space-between; position: relative; }
     .brand { font-weight: 700; letter-spacing: 0.3px; color: #fff; }
     .brand span { color: var(--accent-2); }
-    
-    
+
+    /* Desktop nav */
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
+    nav a { color: rgba(255,255,255,0.92); text-decoration: none; opacity: 0.95; position: relative; }
+    nav a[aria-current="page"], nav a:hover { color: #fff; opacity: 1; text-decoration: none; }
+    nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease; }
+    nav a:hover::after, nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+    /* Menu button (desktop hidden) */
     .menu-btn { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; }
 
     h1 { font-size: clamp(22px, 4.2vw, 32px); line-height: 1.15; margin: 10px 0 6px; font-weight: 700; letter-spacing: -0.01em; }
     h2 { font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; margin: 28px 0 35px; color: var(--slate); }
-   /* Section heading polish */
-  section > h2 { display: flex; align-items: center; gap: 10px; position: relative; }
-  section > h2 .hicon { width: 40px; height: 40px; color: var(--accent-2); }
-  section > h2::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 48px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
-  section:hover > h2::after, section:focus-within > h2::after { transform: scaleX(1); }
+    section > h2 { display: flex; align-items: center; gap: 10px; position: relative; }
+    section > h2 .hicon { width: 40px; height: 40px; color: var(--accent-2); }
+    section > h2::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 48px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
+    section:hover > h2::after, section:focus-within > h2::after { transform: scaleX(1); }
+
     p, li { color: var(--text); }
     .muted { color: var(--muted); }
     .kicker { color: var(--accent-2); font-weight: 600; letter-spacing: 0.02em; }
 
-    .hero .about-intro { margin-top: 12px; color: var(--text); max-width: 65ch; }
-
+    /* Hero */
     .hero { position: relative; margin-top: 0; padding: 54px 0 20px; display: grid; grid-template-columns: 1fr; gap: 22px; align-items: center; isolation: isolate; z-index: 0; }
     .hero::before { content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100vw; height: 100%; background: linear-gradient(180deg, color-mix(in oklab, var(--pale) 40%, transparent), transparent 70%); pointer-events: none; z-index: -1; }
-    /* .hero-band removed: using .hero::before for full‑bleed tint */
-    
-.hero-cta { margin-top: 12px; }
+    .hero .about-intro { margin-top: 12px; color: var(--text); max-width: 65ch; }
+
+    .hero-cta { margin-top: 12px; }
     .btn { border: 1px solid currentColor; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; line-height: 1; display: inline-flex; align-items: center; gap: 8px; transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease; will-change: transform; }
     .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: 0 4px 12px rgba(23,28,38,0.16); }
-    /* CTA hover/active/focus */
     .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(23,28,38,0.10); background: color-mix(in oklab, var(--text) 8%, transparent); color: var(--text); border-color: var(--text); }
     .btn:active { transform: translateY(0); box-shadow: 0 3px 8px rgba(23,28,38,0.10); }
     .btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(23,28,38,0.22); background: color-mix(in oklab, var(--text) 92%, transparent); color: var(--bg); }
     .btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
-
-    /* CTA inline icons */
     .btn svg.chev, .btn svg.mail { width: 18px; height: 18px; flex: 0 0 auto; opacity: 0; transform: translateX(-4px); transition: transform 180ms ease, opacity 180ms ease; }
     .btn:hover svg.chev, .btn:hover svg.mail { opacity: 1; transform: translateX(0); }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .btn { transition: none; }
-    }
 
     /* Icons & contact */
     .icon { width: 20px; height: 20px; display: inline-block; vertical-align: text-bottom; fill: currentColor; }
     .contact-list { list-style: none; padding-left: 0; margin: 0; }
     .contact-list li { margin: 8px 0; }
 
-    /* Social icon row (like your main site) */
+    /* Social */
     .social { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
     .iconbtn { width: 44px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--muted); color: var(--muted); text-decoration: none; }
     .iconbtn:hover { border-color: var(--text); color: var(--text); background: color-mix(in oklab, var(--text) 7%, transparent); }
     .iconbtn .icon { width: 22px; height: 22px; }
-    /* Align photo + icons column */
     .hero-side { display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .social.center { justify-content: center; }
-    /* Portrait + responsive hero */
-    .portrait-frame {
-      position: relative;
-      overflow: hidden; /* needed for zoom crop */
-      padding: 6px; /* ring thickness */
-      border-radius: 9999px; /* fully circle */
-      background:
-        linear-gradient(var(--bg), var(--bg)) padding-box,
-        linear-gradient(135deg,
-          color-mix(in oklab, var(--accent) 35%, transparent),
-          color-mix(in oklab, var(--accent-2) 35%, transparent)) border-box;
-      border: 2px solid transparent; /* shows the gradient ring */
-      box-shadow: 0 8px 24px rgba(23,28,38,0.08); /* soft lift */
-    }
-    .portrait {
-  display: block;
-  width: 100%;
-  max-width: clamp(180px, 26vw, 300px); /* responsive cap */
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 50%;
-  transition: transform 320ms ease, filter 320ms ease;
-  will-change: transform;
-}
 
-/* Responsive portrait sizing tweaks */
-@media (min-width: 1200px) {
-  .portrait { max-width: 340px; }
-}
-@media (max-width: 380px) {
-  .portrait { max-width: 160px; }
-}
+    /* Portrait */
+    .portrait-frame {
+      position: relative; overflow: hidden; padding: 6px; border-radius: 9999px;
+      background: linear-gradient(var(--bg), var(--bg)) padding-box,
+                  linear-gradient(135deg, color-mix(in oklab, var(--accent) 35%, transparent), color-mix(in oklab, var(--accent-2) 35%, transparent)) border-box;
+      border: 2px solid transparent; box-shadow: 0 8px 24px rgba(23,28,38,0.08);
+    }
+    .portrait { display: block; width: 100%; max-width: clamp(180px, 26vw, 300px); aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%; transition: transform 320ms ease, filter 320ms ease; will-change: transform; }
+    @media (min-width: 1200px) { .portrait { max-width: 340px; } }
+    @media (max-width: 380px) { .portrait { max-width: 160px; } }
+
+    /* Grids */
     @media (min-width: 860px) { .hero { grid-template-columns: 1.25fr 0.75fr; } .portrait { justify-self: end; } }
-    /* About grid under About section */
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 12px; }
     @media (min-width: 860px) { .about-grid { grid-template-columns: 1fr 1fr; } .about-card:nth-child(n+2) { border-left: 1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-left: 16px; } }
+
+    .about-card { border: 1px solid var(--line); border-top: 3px solid var(--accent-2); border-radius: 12px; padding: 14px; background: #fff; transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease; }
+    .about-card:hover { border-color: color-mix(in oklab, var(--accent) 35%, transparent); box-shadow: 0 10px 18px rgba(23,28,38,0.06); transform: translateY(-2px); }
     .about-card h3 { margin: 0 0 6px; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
-   
-   .about-card {
-  border: 1px solid var(--line);
-  border-top: 3px solid var(--accent-2); /* thin accent stripe */
-  border-radius: 12px;
-  padding: 14px;
-  background: #fff;
-  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
-}
-.about-card:hover {
-  border-color: color-mix(in oklab, var(--accent) 35%, transparent);
-  box-shadow: 0 10px 18px rgba(23,28,38,0.06);
-  transform: translateY(-2px);
-}
-.about-card .hicon { width: 40px; height: 40px; color: var(--accent-2); }
+    .about-card .hicon { width: 40px; height: 40px; color: var(--accent-2); }
 
     .hicon { width: 22px; height: 22px; display: inline-block; flex: 0 0 auto; }
-    /* Compact chips */
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
     .chip { border: 1px solid color-mix(in oklab, var(--text) 18%, transparent); border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; color: var(--muted); }
     .chips-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
     .chips-row .meta { margin-right: 2px; }
-    /* Education definition list */
+
     .edu { display:grid; gap:6px; margin:0; }
     .edu > div { display:grid; grid-template-columns:auto 1fr; gap:10px; }
     .edu dt { font-weight:600; white-space:nowrap; }
-    .edu dd { margin:0; color:var(--muted); } 
-    /* About interest line */
+    .edu dd { margin:0; color:var(--muted); }
+
     #about p.interests { margin-top:6px; font-style: italic; color: color-mix(in oklab, var(--muted) 85%, transparent); }
-    /* Compact meta paragraphs in About */
     #about .meta { margin:6px 0; }
-    /* Teaching styling */
+
+    /* Teaching */
     .teach-list { list-style: none; padding-left: 0; margin: 0; }
     .teach-list li { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
     .teach-icon { width: 18px; height: 18px; color: var(--accent); }
 
-    /* Subhead style for mini-sections */
+    /* Subhead */
     .subhead { margin: 12px 0 10px; font-size: 0.9rem; font-weight: 600; color: var(--slate); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
 
-    /* Badge pill */
-    .badge { background: color-mix(in oklab, var(--accent) 12%, transparent); border: 1px solid color-mix(in oklab, var(--accent) 28%, transparent); color: var(--slate); border-radius: 999px; padding: 2px 8px; font-size: 0.8rem; }
-
-    /* Awards layout */
+    /* Awards */
     .awards { display: grid; gap: 8px; margin: 0; }
     .awards > div { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: baseline; }
     .awards dt { font-weight: 600; color: var(--muted); }
     .awards dd { margin: 0; }
 
-    /* Presentation/Training lists */
+    /* Timelines */
     .present-list li, .train-list li { display: flex; align-items: baseline; gap: 8px; margin: 6px 0; }
-    /* Minimal timeline look for Presentations & Training */
-    /* Minimal timeline look for Presentations & Training */
-.timeline {
-  position: relative;
-  margin: 8px 0 0;
-  padding-left: 18px;                 /* space for the timeline line */
-  border-left: 1px solid var(--line); /* the vertical line */
-}
-.timeline li {
-  position: relative;
-  margin: 10px 0;
-  display: grid;                      /* align year + text */
-  grid-template-columns: 72px 1fr;    /* year column + details */
-  gap: 12px;
-  align-items: baseline;
-}
-.timeline li::before {
-  content: "";
-  position: absolute;
-  /* center the 8px dot on the 1px border-left given 18px padding-left:  -18 - 4 + ~0.5 ≈ -22px */
-  left: -8px;
-  top: 0.95em;
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 0 2px var(--bg);
-}
-.timeline .badge {
-  justify-self: start;
-  min-width: 56px;
-  text-align: center;
-  margin-right: 6px;
-}
+    .timeline { position: relative; margin: 8px 0 0; padding-left: 18px; border-left: 1px solid var(--line); }
+    .timeline li { position: relative; margin: 10px 0; display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: baseline; }
+    .timeline li::before { content: ""; position: absolute; left: -8px; top: 0.95em; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 2px var(--bg); }
+    .timeline .badge { justify-self: start; min-width: 56px; text-align: center; margin-right: 6px; }
 
-/* Certificate link (instead of a button) */
-.cert-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-left: 10px; font-size: 0.9rem;
-  color: var(--link); text-decoration: none;
-  position: relative; padding-bottom: 2px;
-}
-.cert-link .icon { width: 16px; height: 16px; }
-.cert-link::after {
-  content: ""; position: absolute; left: 0; bottom: -2px;
-  height: 2px; width: 100%; background: var(--accent-2);
-  transform: scaleX(0); transform-origin: left; transition: transform 180ms ease;
-}
-.cert-link:hover::after, .cert-link:focus-visible::after { transform: scaleX(1); }
-.cert-link:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+    /* Certificate link */
+    .cert-link { display: inline-flex; align-items: center; gap: 6px; margin-left: 10px; font-size: 0.9rem; color: var(--link); text-decoration: none; position: relative; padding-bottom: 2px; }
+    .cert-link .icon { width: 16px; height: 16px; }
+    .cert-link::after { content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 100%; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 180ms ease; }
+    .cert-link:hover::after, .cert-link:focus-visible::after { transform: scaleX(1); }
+    .cert-link:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 
-    /* Cards for Projects */
+    /* Cards */
     .cardgrid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 860px) { .cardgrid { grid-template-columns: 1fr 1fr; } }
     .card { border: 1px solid var(--line); border-radius: 12px; padding: 12px; transition: border-color 150ms ease, transform 150ms ease; }
@@ -293,71 +206,78 @@
     ul.plain { list-style: none; padding-left: 0; margin: 0; }
     ul.plain li { margin: 6px 0; }
     .meta { font-size: 0.95rem; color: var(--muted); }
-        .abstract { color: var(--muted); margin: 6px 0 0; }
+    .abstract { color: var(--muted); margin: 6px 0 0; }
 
+    footer {
+      background: var(--bg);
+      color: var(--text); /* fixed from white on light bg */
+      border-top: 2px solid var(--accent-2);
+      padding: 10px 0; font-size: 0.95rem;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
+    }
+    footer a { color: var(--link); text-decoration: none; }
+    footer a:hover { color: var(--text); text-decoration: underline; }
 
-footer {
-  background: var(--bg);
-  color: rgba(255,255,255,0.92);
-  border-top: 2px solid var(--accent-2);
-  padding: 10px 0;
-  font-size: 0.95rem;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.08); /* ← the thin shadow */
-}
-footer a { color: rgba(255,255,255,0.92); text-decoration: none; }
-footer a:hover { color: #fff; text-decoration: underline; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-  /* Responsive overrides for hero/about and cards */
+
+    /* Responsive overrides for hero/about and cards */
     @media (min-width: 700px) {
       .hero { grid-template-columns: 1.25fr 0.75fr; }
       .portrait { justify-self: end; }
       .about-grid { grid-template-columns: 1fr 1fr; }
       .about-card:nth-child(n+2) { border-left: 1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-left: 16px; }
     }
+
     .cardgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+
     /* Portrait hover overlay */
-    .portrait-frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-      background: radial-gradient(120% 80% at 50% 30%, rgba(0,0,0,0.10), rgba(0,0,0,0) 55%);
-      opacity: 0; transition: opacity 320ms ease; }
+    .portrait-frame::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(120% 80% at 50% 30%, rgba(0,0,0,0.10), rgba(0,0,0,0) 55%); opacity: 0; transition: opacity 320ms ease; }
     .portrait-frame:hover .portrait { transform: scale(1.06); }
     .portrait-frame:hover::after { opacity: 1; }
 
-/* Mobile nav polish: full-width dropdown and bigger tap targets */
-@media (max-width: 860px) {
-  header .nav { position: relative; }
-  header nav ul {
-    left: var(--pad);
-    right: var(--pad);
-    top: calc(100% + 8px);
-    padding: 10px;
-    gap: 4px;
-    z-index: 60; /* keep above hero */
-  }
-  header nav li a {
-    display: block;
-    padding: 10px 12px; /* larger touch target */
-    border-radius: 8px;
-  }
-  header nav li a:hover { background: rgba(255,255,255,0.06); }
-}
-.menu-btn{ position: relative; z-index: 61; }
+    /* === Mobile nav (final override) === */
+    @media (max-width: 860px) {
+      /* Show the menu button */
+      .menu-btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: transparent; border: 1px solid rgba(255,255,255,0.55);
+        color: #fff; padding: 10px 12px; border-radius: 10px; line-height: 1;
+      }
 
+      /* Hide list by default; anchor to #topnav */
+      header .nav { position: relative; }
+      header nav ul {
+        display: none; position: absolute; left: var(--pad); right: var(--pad); top: 56px;
+        background: var(--slate); border: 1px solid #273043; border-radius: 12px;
+        padding: 8px; flex-direction: column; gap: 6px; z-index: 60;
+      }
 
-</style>
+      /* Open state: vertical flex */
+      #topnav.open nav ul { display: flex; }
+
+      /* Comfortable tap targets */
+      header nav li a { display: block; padding: 12px 14px; border-radius: 8px; }
+      header nav li a:hover { background: rgba(255,255,255,0.08); }
+
+      /* Simplify hover underline on mobile */
+      nav a::after { display: none; }
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="wrap nav" id="topnav">
       <div class="brand">Shadi <span>Seyedi</span></div>
-      <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('topnav').classList.toggle('open')">Menu</button>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+        onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">Menu</button>
       <nav>
-        <ul>
+        <ul id="mobile-menu">
           <li><a href="#about">About</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#teaching">Teaching</a></li>
           <li><a href="#awards">Awards</a></li>
-          <li><a href="#presentations">Presentations & Training</a></li>
+          <li><a href="#presentations">Presentations &amp; Training</a></li>
         </ul>
       </nav>
     </div>
@@ -366,7 +286,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
   <main id="main" class="wrap" tabindex="-1">
     <section class="hero" id="home">
       <div>
-        <div class="kicker">Health Economist & Data Scientist</div>
+        <div class="kicker">Health Economist &amp; Data Scientist</div>
         <h1>Shadi Seyedi, PhD</h1>
         <p class="about-intro">I study how health policy shapes coverage, access, and outcomes. My work uses modern causal methods and large surveys to produce decision‑useful evidence.</p>
         <div class="hero-cta">
@@ -382,7 +302,6 @@ footer a:hover { color: #fff; text-decoration: underline; }
             </svg>
           </a>
         </div>
-        <!-- social icons moved under portrait -->
       </div>
       <div class="hero-side">
         <div class="portrait-frame"><img class="portrait" src="assets/headshot.jpg" alt="Portrait of Shadi Seyedi" /></div>
@@ -409,11 +328,15 @@ footer a:hover { color: #fff; text-decoration: underline; }
         </div>
       </div>
     </section>
+
     <section id="about">
-      <h2>About</h2>
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3L2 9l10 6 10-6-10-6zm0 13L4 10.5V14l8 4 8-4v-3.5L12 16z"/></svg>
+        About
+      </h2>
       <p>I’m a health economist and data scientist focused on turning complex administrative and survey data into evidence that decision‑makers can act on. My current research examines how the Affordable Care Act’s Medicaid expansion changed coverage, access, and use of care for U.S.-born and foreign‑born adults. Methodologically, I work with modern difference‑in‑differences and event‑study designs that account for staggered policy timing, and I pair those designs with survey‑weighted estimation and design‑based standard errors. I enjoy the unglamorous parts of analysis—clean measurement, careful checks for pre‑trends, robustness to alternative cohorts and specifications, and transparent uncertainty communication. Beyond research, I’m motivated by work that lowers administrative burden and makes programs easier to use, particularly for immigrants and other groups who face documentation and language barriers. I have experience collaborating with clinicians and policy teams, teaching microeconomics and labor economics, and building lightweight tools in R and Python to share results. I value open, reproducible workflows, clear writing, and pragmatic recommendations that acknowledge trade‑offs. I’m based in Ann Arbor, MI, work primarily remotely, and am open to short travel for collaboration and presentations.</p>
-      <p class="muted">Methods of interest: identification in staggered adoption settings; survey design & variance estimation; budget impact modeling; decision‑useful evidence for payers and providers.</p>
-      <p class="interests"><strong>Interests:</strong> health policy & immigrant health equity · causal inference · HEOR · philosophy · classical music · nature & animals · pottery & woodworking · community</p>
+      <p class="muted">Methods of interest: identification in staggered adoption settings; survey design &amp; variance estimation; budget impact modeling; decision‑useful evidence for payers and providers.</p>
+      <p class="interests"><strong>Interests:</strong> health policy &amp; immigrant health equity · causal inference · HEOR · philosophy · classical music · nature &amp; animals · pottery &amp; woodworking · community</p>
 
       <div class="about-grid">
         <div class="about-card">
@@ -443,22 +366,16 @@ footer a:hover { color: #fff; text-decoration: underline; }
       </div>
     </section>
 
-    
-
-    
-
-    
-
     <section id="research">
       <h2>
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 2h7l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1v5h5"/></svg>
         Research
       </h2>
-            <article>
+      <article>
         <p><strong>Medicaid Expansion and Coverage by Nativity: Evidence from Modern DiD</strong><br/>
           <span class="meta">Working paper (2025) — <a href="/assets/medicaid_expansion_wp.pdf">PDF</a> · <a href="/assets/medicaid_wp_slides.pdf">Slides</a></span>
         </p>
-        <p class="abstract">We evaluate how the Affordable Care Act’s Medicaid expansion affected insurance coverage for U.S.-born and foreign-born adults using the American Community Survey (2011–2019). Leveraging interaction‑weighted difference‑in‑differences estimators (Sun & Abraham), we decompose effects by cohort and event time, examine pre‑trend balance, and report cohort‑specific ATTs to address staggered adoption. We show where two‑way fixed effects would bias estimates and provide robustness checks (placebo cohorts, alternative timing, weighting). Results highlight larger gains among long‑residing foreign‑born adults and heterogeneous effects by state policy environment, with implications for outreach and administrative burden reduction.</p>
+        <p class="abstract">We evaluate how the Affordable Care Act’s Medicaid expansion affected insurance coverage for U.S.-born and foreign-born adults using the American Community Survey (2011–2019). Leveraging interaction‑weighted difference‑in‑differences estimators (Sun &amp; Abraham), we decompose effects by cohort and event time, examine pre‑trend balance, and report cohort‑specific ATTs to address staggered adoption. We show where two‑way fixed effects would bias estimates and provide robustness checks (placebo cohorts, alternative timing, weighting). Results highlight larger gains among long‑residing foreign‑born adults and heterogeneous effects by state policy environment, with implications for outreach and administrative burden reduction.</p>
       </article>
 
       <article>
@@ -483,7 +400,6 @@ footer a:hover { color: #fff; text-decoration: underline; }
       </article>
     </section>
 
-
     <section id="projects">
       <h2>
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
@@ -507,7 +423,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
           <div class="thumb" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 19h16v2H4v-2zM6 4h2v12H6V4zm5 4h2v8h-2V8zm5-3h2v11h-2V5z"/></svg>
           </div>
-          <h3>MEPS Health Outcomes & Expenditures</h3>
+          <h3>MEPS Health Outcomes &amp; Expenditures</h3>
           <span class="meta">Survey‑weighted models; subgroup analysis; sectoral expenditure decomposition.</span>
           <div class="actions">
             <a href="/assets/meps_outcomes_summary.pdf">Summary</a>
@@ -520,7 +436,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
             <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
           </div>
           <h3>HEOR Budget Impact Mini‑Model (Python)</h3>
-          <span class="meta">Toy model for BIM structure, inputs, one‑way & PSA uncertainty.</span>
+          <span class="meta">Toy model for BIM structure, inputs, one‑way &amp; PSA uncertainty.</span>
           <div class="actions">
             <a href="/assets/heor_bim_readme.pdf">ReadMe</a>
             <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a>
@@ -555,7 +471,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
     <section id="awards">
       <h2>
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17 3H7v4H3v4a7 7 0 006 6.92V21l3-1 3 1v-3.08A7 7 0 0021 11V7h-4V3zm-2 4V5h-6v2H5v2a5 5 0 0010 0V7h-0z"/></svg>
-        Honors & Awards
+        Honors &amp; Awards
       </h2>
       <dl class="awards">
         <div><dt>2024</dt><dd>Social Security Administration Dissertation Grant (RDRC) <span class="badge">$7,000</span></dd></div>
@@ -575,7 +491,7 @@ footer a:hover { color: #fff; text-decoration: underline; }
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
           <path fill="currentColor" d="M19 3h-1V1h-2v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V8h14v11z"/>
         </svg>
-        Presentations & Training
+        Presentations &amp; Training
       </h2>
 
       <h3 class="subhead">
@@ -583,60 +499,49 @@ footer a:hover { color: #fff; text-decoration: underline; }
         Presentations
       </h3>
       <ul class="plain present-list timeline">
-        <li><span class="badge">2024</span> European Health Economics Association (EuHEA) PhD & Supervisor Conference</li>
+        <li><span class="badge">2024</span> European Health Economics Association (EuHEA) PhD &amp; Supervisor Conference</li>
       </ul>
 
       <h3 class="subhead">
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 00-2 2v16l4-3h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-4 9H8V9h8v2z"/></svg>
-        Training & Certificates
+        Training &amp; Certificates
       </h3>
-<ul class="plain train-list timeline">
-  <li><span class="badge">2025</span> AWS Cloud Practitioner Essentials
-    <a class="cert-link"
-       href="/assets/certs/aws_cloud_practitioner.pdf"
-       data-cert="/assets/certs/aws_cloud_practitioner.pdf"
-       target="_blank" rel="noopener">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
-      </svg>
-      <span>Certificate</span>
-    </a>
-  </li>
+      <ul class="plain train-list timeline">
+        <li><span class="badge">2025</span> AWS Cloud Practitioner Essentials
+          <a class="cert-link" href="/assets/certs/aws_cloud_practitioner.pdf" data-cert="/assets/certs/aws_cloud_practitioner.pdf" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+            </svg>
+            <span>Certificate</span>
+          </a>
+        </li>
 
-  <li><span class="badge">2022</span> Stanford Machine Learning
-    <a class="cert-link"
-       href="/assets/certs/stanford_ml.pdf"
-       data-cert="/assets/certs/stanford_ml.pdf"
-       target="_blank" rel="noopener">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
-      </svg>
-      <span>Certificate</span>
-    </a>
-  </li>
+        <li><span class="badge">2022</span> Stanford Machine Learning
+          <a class="cert-link" href="/assets/certs/stanford_ml.pdf" data-cert="/assets/certs/stanford_ml.pdf" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+            </svg>
+            <span>Certificate</span>
+          </a>
+        </li>
 
-  <li><span class="badge">2020</span> Johns Hopkins Data Science Specialization (Coursera)
-    <a class="cert-link"
-       href="/assets/certs/jhu_data_science.pdf"
-       data-cert="/assets/certs/jhu_data_science.pdf"
-       target="_blank" rel="noopener">
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-        <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
-      </svg>
-      <span>Certificate</span>
-    </a>
-  </li>
-</ul>
+        <li><span class="badge">2020</span> Johns Hopkins Data Science Specialization (Coursera)
+          <a class="cert-link" href="/assets/certs/jhu_data_science.pdf" data-cert="/assets/certs/jhu_data_science.pdf" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M6 2h12v2H6v16h12v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 4l4 4h-4V6z"/>
+            </svg>
+            <span>Certificate</span>
+          </a>
+        </li>
+      </ul>
     </section>
-
-    
   </main>
 
   <footer>
-  <div class="wrap">
-    <p>© <span id="y"></span> Shadi Seyedi · Plain HTML/CSS on GitHub Pages</p>
-  </div>
-</footer>
+    <div class="wrap">
+      <p>© <span id="y"></span> Shadi Seyedi · Plain HTML/CSS on GitHub Pages</p>
+    </div>
+  </footer>
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
