@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — Shadi Seyedi, PhD</title>
+  <meta name="description" content="Blog posts on health economics, policy evaluation, and data science." />
+
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Blog — Shadi Seyedi, PhD" />
+  <meta property="og:site_name" content="Shadi Seyedi" />
+  <meta property="og:description" content="Reflections and analysis on health policy, economics, and data science." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shadi-sadie.github.io/blog.html" />
+  <meta property="og:image" content="https://shadi-sadie.github.io/assets/og-image.jpg" />
+  <meta name="theme-color" content="#0e1116" />
+
+  <!-- Inter font (variable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+  <!-- Favicons (reuse your existing icons) -->
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/assets/icons/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/assets/icons/favicon-512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180">
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #0b0b0c;
+      --muted: #5b5f66;
+      --link: #495F73;
+      --maxw: clamp(720px, 92vw, 1040px);
+      --pad: 20px;
+      --brand: #171C26;
+      --accent: #7394BF;
+      --accent-2: #A69A77;
+      --slate: #495F73;
+      --line: color-mix(in oklab, var(--text) 10%, transparent);
+      --card-bg: #ffffff;
+      --card-border: color-mix(in oklab, var(--text) 12%, transparent);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0e1116;
+        --text: #e9e9ea;
+        --muted: #a6aab1;
+        --link: #7aa2ff;
+        --card-bg: #12161d;
+        --card-border: color-mix(in oklab, var(--text) 16%, transparent);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      font-size: clamp(17px, calc(14px + 1.1vw), 18px);
+      line-height: 1.8;
+      font-feature-settings: "liga" 1, "calt" 1;
+    }
+    a { color: var(--link); text-underline-offset: 3px; }
+    img { max-width: 100%; height: auto; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* Header / Nav (same look as index) */
+    header { position: sticky; top: 0; z-index: 50; isolation: isolate; backdrop-filter: blur(10px); background: var(--slate); border-top: 2px solid var(--accent-2); border-bottom: 1px solid #1f2631; }
+    header .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    #topnav { display: flex; align-items: center; justify-content: space-between; position: relative; }
+    .brand { font-weight: 700; letter-spacing: 0.3px; color: #fff; font-size: clamp(20px, 5.2vw, 26px); }
+    .brand span { color: var(--accent-2); }
+    nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 18px; }
+    nav a { color: rgba(255,255,255,0.92); text-decoration: none; opacity: 0.95; position: relative; }
+    nav a[aria-current="page"], nav a:hover { color: #fff; opacity: 1; text-decoration: none; }
+    nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 200ms ease; }
+    nav a:hover::after, nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+    /* Mobile menu button */
+    .menu-btn { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; }
+    @media (max-width: 860px) {
+      .menu-btn { display: inline-flex !important; align-items: center; justify-content: center; width: 44px; height: 44px; background: transparent; border: none; color: #fff; border-radius: 10px; }
+      header .nav { position: relative; }
+      header nav ul { display: none; position: absolute; left: var(--pad); right: var(--pad); top: 56px; background: var(--slate); border: 1px solid #273043; border-radius: 12px; padding: 8px; flex-direction: column; gap: 6px; z-index: 60; }
+      #topnav.open nav ul { display: flex; }
+      header nav li a { display: block; padding: 12px 14px; border-radius: 8px; }
+      header nav li a:hover { background: rgba(255,255,255,0.08); }
+      nav a::after { display: none; }
+      header .wrap.nav { padding-left: calc(var(--pad) + 10px); }
+      .menu-btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+    }
+
+    /* Blog layout */
+    main { padding: 28px 0; }
+    #blog-hero { padding: 32px 0 10px; }
+    h1 { font-size: clamp(24px, 4.6vw, 34px); line-height: 1.2; margin: 0 0 6px; font-weight: 700; letter-spacing: -0.01em; }
+    .muted { color: var(--muted); }
+
+    .posts { display: grid; gap: 18px; margin-top: 16px; }
+    .post { border: 1px solid var(--card-border); border-radius: 12px; background: var(--card-bg); padding: 16px; }
+    .post h2 { margin: 0 0 6px; font-size: clamp(18px, 2.4vw, 24px); }
+    .post h2 a { color: inherit; text-decoration: none; }
+    .post h2 a:hover { text-decoration: underline; }
+    .post .meta { font-size: 0.95rem; color: var(--muted); margin-bottom: 8px; }
+    .post .excerpt { color: var(--text); margin: 8px 0 0; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .tag { border: 1px solid var(--card-border); border-radius: 999px; padding: 4px 10px; font-size: 0.9rem; color: var(--muted); }
+
+    /* Pagination */
+    .pager { display: flex; justify-content: space-between; gap: 8px; margin-top: 18px; }
+    .btn { border: 1px solid currentColor; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 600; line-height: 1; display: inline-flex; align-items: center; gap: 8px; }
+
+    footer { background: var(--bg); color: var(--text); border-top: 2px solid var(--accent-2); padding: 10px 0; font-size: 0.95rem; box-shadow: 0 -2px 6px rgba(0,0,0,0.08); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav" id="topnav">
+      <div class="brand">Shadi <span>Seyedi</span></div>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+        onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">
+        <svg class="hamburger" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"></rect>
+        </svg>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav>
+        <ul id="mobile-menu">
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#research">Research</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#teaching">Teaching</a></li>
+          <li><a href="index.html#awards">Awards</a></li>
+          <li><a href="index.html#presentations">Presentations &amp; Training</a></li>
+          <li><a href="blog.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="blog-hero">
+      <h1>Blog</h1>
+      <p class="muted">Thoughts on health policy, economics, and data science.</p>
+    </section>
+
+    <!-- Empty-state placeholder -->
+    <section class="posts" aria-label="Blog posts">
+      <article class="post">
+        <h2><a href="#">Sample Post Title</a></h2>
+        <div class="meta">Draft • Month Day, Year • 3–5 min read</div>
+        <p class="excerpt">This is a placeholder excerpt. When you’re ready, create a new HTML page per post or expand this into a full entry.</p>
+        <div class="tags">
+          <span class="tag">Health Policy</span>
+          <span class="tag">Causal Inference</span>
+          <span class="tag">Survey Analytics</span>
+        </div>
+      </article>
+
+      <article class="post">
+        <h2><a href="#">Another Post (Template)</a></h2>
+        <div class="meta">Draft • Month Day, Year • 4–6 min read</div>
+        <p class="excerpt">Use this as a second card to see how spacing and tag chips feel. Delete when you publish your first real post.</p>
+        <div class="tags">
+          <span class="tag">Medicaid</span>
+          <span class="tag">Methods</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Pager (hide/remove until needed) -->
+    <nav class="pager" aria-label="Pagination">
+      <a class="btn" href="#" aria-disabled="true">← Newer</a>
+      <a class="btn" href="#" aria-disabled="true">Older →</a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="y"></span> Shadi Seyedi · Plain HTML/CSS on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
