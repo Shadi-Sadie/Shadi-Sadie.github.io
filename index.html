@@ -257,14 +257,40 @@
       /* Simplify hover underline on mobile */
       nav a::after { display: none; }
     }
-  </style>
+  /* === Small header/layout tweaks === */
+    header .wrap.nav { padding-left: calc(var(--pad) + 10px); }
+
+    /* Force hamburger on the far right */
+    .menu-btn {
+      margin-left: auto;
+    }
+
+    /* Mobile: show hamburger and style it as three lines */
+    @media (max-width: 860px) {
+      .menu-btn {
+        display: inline-flex !important;
+        align-items: center; justify-content: center;
+        width: 44px; height: 44px;
+        background: transparent; border: none; color: #fff; border-radius: 10px;
+      }
+      .menu-btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+    }
+</style>
 </head>
 <body>
   <header>
     <div class="wrap nav" id="topnav">
       <div class="brand">Shadi <span>Seyedi</span></div>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
-        onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">Menu</button>
+        onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">
+        <!-- Hamburger icon -->
+        <svg class="hamburger" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"></rect>
+        </svg>
+        <span class="sr-only">Menu</span>
+      </button>
       <nav>
         <ul id="mobile-menu">
           <li><a href="#about">About</a></li>
