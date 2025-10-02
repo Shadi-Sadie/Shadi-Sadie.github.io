@@ -14,6 +14,11 @@
   <meta property="og:image" content="https://shadi-sadie.github.io/assets/og-image.jpg" />
   <meta name="theme-color" content="#0e1116" />
 
+  <!-- Inter font (variable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
   <!-- Favicons / PWA (PNG-only setup based on your files) -->
   <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="/assets/icons/favicon-192.png" sizes="192x192" type="image/png">
@@ -38,6 +43,9 @@
       --pale: #93ABBF;
       --line: color-mix(in oklab, var(--text) 10%, transparent);
       --line-strong: color-mix(in oklab, var(--accent) 35%, transparent);
+      /* cards */
+      --card-bg: #ffffff;
+      --card-border: color-mix(in oklab, var(--text) 12%, transparent);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -46,6 +54,9 @@
         --text: #e9e9ea;
         --muted: #a6aab1;
         --link: #7aa2ff;
+        /* dark cards */
+        --card-bg: #12161d; /* deep slate so cards don't stay white */
+        --card-border: color-mix(in oklab, var(--text) 16%, transparent);
       }
     }
 
@@ -54,7 +65,12 @@
     html, body {
       margin: 0; padding: 0;
       background: var(--bg); color: var(--text);
-      font: 17px/1.75 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      /* Apply clamp() to base font size for smooth scaling between 17–18px */
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial;
+      font-size: clamp(17px, calc(14px + 1.1vw), 18px);
+      line-height: 1.8;
+      font-feature-settings: "liga" 1, "calt" 1;
+      font-variation-settings: normal;
     }
     a { color: var(--link); text-underline-offset: 3px; }
     img { max-width: 100%; height: auto; }
@@ -84,8 +100,8 @@
     /* Menu button (desktop hidden) */
     .menu-btn { display: none; background: transparent; border: 1px solid rgba(255,255,255,0.55); color: #fff; padding: 6px 10px; border-radius: 10px; }
 
-    h1 { font-size: clamp(24px, 5vw, 36px); line-height: 1.18; margin: 12px 0 8px; font-weight: 700; letter-spacing: -0.01em; }
-    h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; margin: 30px 0 36px; color: var(--slate); }
+    h1 { font-size: clamp(23px, 4.6vw, 32px); line-height: 1.2; margin: 12px 0 8px; font-weight: 700; letter-spacing: -0.01em; }
+    h2 { font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; margin: 26px 0 30px; color: var(--slate); }
     section > h2 { display: flex; align-items: center; gap: 10px; position: relative; }
     section > h2 .hicon { width: 40px; height: 40px; color: var(--accent-2); }
     section > h2::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 48px; height: 2px; background: var(--accent-2); transform: scaleX(0); transform-origin: left; transition: transform 220ms ease; }
@@ -139,10 +155,21 @@
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 12px; }
     @media (min-width: 860px) { .about-grid { grid-template-columns: 1fr 1fr; } .about-card:nth-child(n+2) { border-left: 1px solid color-mix(in oklab, var(--text) 8%, transparent); padding-left: 16px; } }
 
-    .about-card { border: 1px solid var(--line); border-top: 3px solid var(--accent-2); border-radius: 12px; padding: 14px; background: #fff; transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease; }
-    .about-card:hover { border-color: color-mix(in oklab, var(--accent) 35%, transparent); box-shadow: 0 10px 18px rgba(23,28,38,0.06); transform: translateY(-2px); }
+    .about-card {
+      border: 1px solid var(--card-border);
+      border-top: 3px solid var(--accent-2);
+      border-radius: 12px;
+      padding: 16px;
+      background: var(--card-bg);
+      transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    }
+    .about-card:hover {
+      border-color: color-mix(in oklab, var(--accent) 35%, transparent);
+      box-shadow: 0 8px 16px rgba(23,28,38,0.06);
+      transform: translateY(-2px);
+    }
     .about-card h3 { margin: 0 0 6px; font-size: 0.9rem; font-weight: 600; color: var(--accent-2); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
-    .about-card .hicon { width: 40px; height: 40px; color: var(--accent-2); }
+    .about-card .hicon { width: 36px; height: 36px; color: var(--accent-2); }
 
     .hicon { width: 22px; height: 22px; display: inline-block; flex: 0 0 auto; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
@@ -151,17 +178,41 @@
     .chips-row .meta { margin-right: 2px; }
 
     .edu { display:grid; gap:6px; margin:0; }
-    .edu > div { display:grid; grid-template-columns:auto 1fr; gap:10px; }
+    .edu > div { display:grid; grid-template-columns:auto 1fr; gap:10px; padding:6px 0; }
+    .edu > div:not(:last-child){ border-bottom: 1px dashed var(--card-border); }
+    .edu dt { font-weight:600; white-space:nowrap; }
+    .edu { display:grid; gap:6px; margin:0; }
+    .edu > div { display:grid; grid-template-columns:auto 1fr; gap:10px; padding:6px 0; }
+    .edu > div:not(:last-child){ border-bottom: 1px dashed var(--card-border); }
     .edu dt { font-weight:600; white-space:nowrap; }
     .edu dd { margin:0; color:var(--muted); }
 
+    /* ===== About layout (reposition cards) ===== */
+    #about { display: grid; gap: 16px; }
+    .about-layout { display: grid; gap: 18px; }
+    .about-main { display: grid; gap: 16px; }
+    .about-side { display: grid; gap: 12px; }
+
+    @media (min-width: 960px){
+      .about-layout { grid-template-columns: 1.4fr 1fr; align-items: start; }
+      .about-side { position: sticky; top: 96px; }
+    }
+    .about-main .about-card + .about-card { margin-top: 0; }
+    /* End About layout */
+
     #about p.interests { margin-top:6px; font-style: italic; color: color-mix(in oklab, var(--muted) 85%, transparent); }
     #about .meta { margin:6px 0; }
+    /* Make the Skills meta lines look like chips in about cards only */
+    .about-card .meta { display: inline-block; margin: 6px 6px 0 0; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--card-border); background: color-mix(in oklab, var(--bg) 80%, transparent); }
+    @media (prefers-color-scheme: dark){
+      .about-card .meta { background: color-mix(in oklab, var(--bg) 70%, transparent); }
+    }
 
     /* Teaching */
     .teach-list { list-style: none; padding-left: 0; margin: 0; }
     .teach-list li { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
-    .teach-icon { width: 18px; height: 18px; color: var(--accent); }
+    .teach-icon { width: 18px; height: 18px; color: var(--accent); flex: 0 0 auto; }
+    .teach-list li svg { display: block; }
 
     /* Subhead */
     .subhead { margin: 12px 0 10px; font-size: 0.9rem; font-weight: 600; color: var(--slate); display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: .06em; }
@@ -202,6 +253,11 @@
     ul.plain li { margin: 6px 0; }
     .meta { font-size: 0.95rem; color: var(--muted); }
     .abstract { color: var(--muted); margin: 6px 0 0; }
+    /* Collapsible abstracts */
+    .abstract.clamped { max-height: 5.2em; overflow: hidden; position: relative; }
+    .abstract.clamped::after { content:""; position:absolute; inset:auto 0 0 0; height:2.6em; background: linear-gradient(to bottom, rgba(255,255,255,0), var(--bg)); }
+    @media (prefers-color-scheme: dark){ .abstract.clamped::after{ background: linear-gradient(to bottom, rgba(14,17,22,0), var(--bg)); } }
+    .more-btn { display:inline-block; margin-top:8px; border:1px solid var(--line); padding:6px 10px; border-radius:999px; background:transparent; cursor:pointer; font-weight:600; }
 
     footer {
       background: var(--bg);
@@ -275,6 +331,8 @@
       }
       .menu-btn:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
     }
+
+
 </style>
 </head>
 <body>
@@ -355,35 +413,37 @@
         <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3L2 9l10 6 10-6-10-6zm0 13L4 10.5V14l8 4 8-4v-3.5L12 16z"/></svg>
         About
       </h2>
-      <p>I’m a health economist and data scientist focused on turning complex administrative and survey data into evidence that decision‑makers can act on. My current research examines how the Affordable Care Act’s Medicaid expansion changed coverage, access, and use of care for U.S.-born and foreign‑born adults. Methodologically, I work with modern difference‑in‑differences and event‑study designs that account for staggered policy timing, and I pair those designs with survey‑weighted estimation and design‑based standard errors. I enjoy the unglamorous parts of analysis—clean measurement, careful checks for pre‑trends, robustness to alternative cohorts and specifications, and transparent uncertainty communication. Beyond research, I’m motivated by work that lowers administrative burden and makes programs easier to use, particularly for immigrants and other groups who face documentation and language barriers. I have experience collaborating with clinicians and policy teams, teaching microeconomics and labor economics, and building lightweight tools in R and Python to share results. I value open, reproducible workflows, clear writing, and pragmatic recommendations that acknowledge trade‑offs. I’m based in Ann Arbor, MI, work primarily remotely, and am open to short travel for collaboration and presentations.</p>
-      <p class="muted">Methods of interest: identification in staggered adoption settings; survey design &amp; variance estimation; budget impact modeling; decision‑useful evidence for payers and providers.</p>
-      <p class="interests"><strong>Interests:</strong> health policy &amp; immigrant health equity · causal inference · HEOR · philosophy · classical music · nature &amp; animals · pottery &amp; woodworking · community</p>
 
-      <div class="about-grid">
-        <div class="about-card">
-          <h3>
-            <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M12 3L2 9l10 6 10-6-10-6zm0 13L4 10.5V14l8 4 8-4v-3.5L12 16z"/>
-            </svg>
-            Education
-          </h3>
-          <dl class="edu">
-            <div><dt>Ph.D. · 2025</dt><dd>UMBC — Public Policy</dd></div>
-            <div><dt>M.Sc. · 2019</dt><dd>University of Delaware — Econ &amp; Econometrics</dd></div>
-            <div><dt>B.Sc. · 2016</dt><dd>Ferdowsi University — Economic Sciences</dd></div>
-          </dl>
+      <div class="about-layout">
+        <div class="about-main">
+          <p>I’m a health economist and data scientist focused on turning complex administrative and survey data into evidence that decision‑makers can act on. My current research examines how the Affordable Care Act’s Medicaid expansion changed coverage, access, and use of care for U.S.-born and foreign‑born adults. Methodologically, I work with modern difference‑in‑differences and event‑study designs that account for staggered policy timing, and I pair those designs with survey‑weighted estimation and design‑based standard errors. I enjoy the unglamorous parts of analysis—clean measurement, careful checks for pre‑trends, robustness to alternative cohorts and specifications, and transparent uncertainty communication. Beyond research, I’m motivated by work that lowers administrative burden and makes programs easier to use, particularly for immigrants and other groups who face documentation and language barriers. I have experience collaborating with clinicians and policy teams, teaching microeconomics and labor economics, and building lightweight tools in R and Python to share results. I value open, reproducible workflows, clear writing, and pragmatic recommendations that acknowledge trade‑offs. I’m based in Ann Arbor, MI, work primarily remotely, and am open to short travel for collaboration and presentations.</p>
         </div>
-        <div class="about-card">
-          <h3>
-            <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58-2-3.46-2.39.97c-.47-.37-1-.68-1.57-.92L14 3h-4l-.21 2.07c-.57.24-1.1.55-1.57.92l-2.39-.97-2 3.46 2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L3.26 14.5l2 3.46 2.39-.97c.47.37 1 .68 1.57.92L10 20h4l.21-2.07c.57-.24 1.1-.55 1.57-.92l2.39.97 2-3.46-2.03-1.58zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/>
+
+        <aside class="about-side">
+          <div class="about-card">
+            <h3>
+              <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.06-.94l2.03-1.58-2-3.46-2.39.97c-.47-.37-1-.68-1.57-.92L14 3h-4l-.21 2.07c-.57.24-1.1.55-1.57.92l-2.39-.97-2 3.46 2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94L3.26 14.5l2 3.46 2.39-.97c.47.37 1 .68 1.57.92L10 20h4l.21-2.07c.57-.24 1.1-.55 1.57-.92l2.39.97 2-3.46-2.03-1.58zM12 15.5A3.5 3.5 0 1115.5 12 3.5 3.5 0 0112 15.5z"/>
             </svg>
             Skills
-          </h3>
-          <p class="meta"><strong>Methods:</strong> DiD · Event studies · Survey design · GLM/Mixed · Causal ML</p>
-          <p class="meta"><strong>Tools:</strong> R · Stata · Python · SAS · SQL · Git</p>
+          </h3><p class="meta"><strong>Tools:</strong> R · Stata · Python · SAS · SQL · Git</p>
           <p class="meta"><strong>Data:</strong> MEPS · ACS · ICD‑10 · CPT · EHR · Claims</p>
         </div>
+
+          <div class="about-card">
+            <h3>
+              <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 3L2 9l10 6 10-6-10-6zm0 13L4 10.5V14l8 4 8-4v-3.5L12 16z"/>
+              </svg>
+              Education
+            </h3>
+            <dl class="edu">
+              <div><dt>PhD</dt><dd>University of Maryland, Baltimore County — Public Policy</dd></div>
+              <div><dt>MS</dt><dd>University of Delaware — Economics & Econometrics</dd></div>
+              <div><dt>BS</dt><dd>Ferdowsi University of Mashhad — Economic Sciences</dd></div>
+            </dl>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -565,7 +625,31 @@
   </footer>
 
   <script>
+    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Collapse long abstracts with a "Show more" toggle
+    (function(){
+      const maxChars = 320; // threshold to clamp
+      document.querySelectorAll('.abstract').forEach(p => {
+        const text = p.textContent.trim();
+        if (text.length > maxChars) {
+          p.classList.add('clamped');
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'more-btn';
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Show more';
+          btn.addEventListener('click', () => {
+            const expanded = btn.getAttribute('aria-expanded') === 'true';
+            btn.setAttribute('aria-expanded', String(!expanded));
+            p.classList.toggle('clamped');
+            btn.textContent = expanded ? 'Show more' : 'Show less';
+          });
+          p.after(btn);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
