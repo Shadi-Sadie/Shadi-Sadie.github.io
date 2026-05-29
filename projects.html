@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — Shadi Seyedi, PhD</title>
+  <meta name="description" content="Data science and health economics projects by Shadi Seyedi." />
+
+  <meta property="og:title" content="Projects — Shadi Seyedi, PhD" />
+  <meta property="og:site_name" content="Shadi Seyedi" />
+  <meta property="og:description" content="Data science and health economics projects by Shadi Seyedi." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shadi-sadie.github.io/projects.html" />
+  <meta property="og:image" content="https://shadi-sadie.github.io/assets/og-image.jpg" />
+  <meta name="theme-color" content="#0e1116" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="/assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/assets/icons/favicon-192.png" sizes="192x192" type="image/png">
+  <link rel="icon" href="/assets/icons/favicon-512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" sizes="180x180">
+
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header>
+    <div class="wrap nav" id="topnav">
+      <a href="/" class="brand">Shadi <span>Seyedi</span></a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
+        onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">
+        <svg class="hamburger" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"></rect>
+          <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"></rect>
+        </svg>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav>
+        <ul id="mobile-menu">
+          <li><a href="/">About</a></li>
+          <li><a href="/research.html">Research</a></li>
+          <li><a href="/projects.html" aria-current="page">Projects</a></li>
+          <li><a href="/teaching.html">Teaching</a></li>
+          <li><a href="/awards.html">Awards</a></li>
+          <li><a href="/presentations.html">Presentations &amp; Training</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wrap page-main" tabindex="-1">
+    <section id="projects">
+      <h2>
+        <svg class="hicon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
+        Projects
+      </h2>
+      <div class="cardgrid">
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h18v2H3V3zm0 5h18v2H3V8zm0 5h12v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+          </div>
+          <h3>Medicaid Expansion: Modern DiD on ACS (2011–2019)</h3>
+          <span class="meta">Interaction‑weighted event studies; pre‑trend diagnostics; cohort‑specific ATTs.</span>
+          <div class="actions">
+            <a href="/assets/medicaid_did_2pager.pdf">2‑page brief</a>
+            <a href="/assets/medicaid_did_slides.pdf">Slides</a>
+            <a href="https://github.com/your-repo-here" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 19h16v2H4v-2zM6 4h2v12H6V4zm5 4h2v8h-2V8zm5-3h2v11h-2V5z"/></svg>
+          </div>
+          <h3>MEPS Health Outcomes &amp; Expenditures</h3>
+          <span class="meta">Survey‑weighted models; subgroup analysis; sectoral expenditure decomposition.</span>
+          <div class="actions">
+            <a href="/assets/meps_outcomes_summary.pdf">Summary</a>
+            <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="thumb" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M3 5h18v6H3V5zm0 8h8v6H3v-6zm10 0h8v6h-8v-6z"/></svg>
+          </div>
+          <h3>HEOR Budget Impact Mini‑Model (Python)</h3>
+          <span class="meta">Toy model for BIM structure, inputs, one‑way &amp; PSA uncertainty.</span>
+          <div class="actions">
+            <a href="/assets/heor_bim_readme.pdf">ReadMe</a>
+            <a href="https://github.com/your-repo" target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>© <span id="y"></span> Shadi Seyedi · Plain HTML/CSS on GitHub Pages</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
