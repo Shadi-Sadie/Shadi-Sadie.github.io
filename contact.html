@@ -3,16 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shadi Seyedi, PhD — Researcher &amp; Educator</title>
-  <meta name="description" content="Researcher and educator studying immigration, belonging, and health." />
+  <title>Contact — Shadi Seyedi, PhD</title>
+  <meta name="description" content="Get in touch with Shadi Seyedi." />
 
-  <!-- Open Graph / SEO -->
-  <meta property="og:title" content="Shadi Seyedi, PhD — Researcher &amp; Educator" />
+  <meta property="og:title" content="Contact — Shadi Seyedi, PhD" />
   <meta property="og:site_name" content="Shadi Seyedi" />
-  <meta property="og:description" content="Researcher and educator studying immigration, belonging, and health." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://shadi-sadie.github.io/" />
-  <meta property="og:image" content="https://shadi-sadie.github.io/assets/og-image.jpg" />
+  <meta property="og:url" content="https://shadi-sadie.github.io/contact.html" />
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
 
@@ -31,7 +28,7 @@
   <a href="#main" class="skip-link">Skip to content</a>
   <header>
     <div class="wrap nav" id="topnav">
-      <a href="/" class="brand" aria-current="page">Shadi <span>Seyedi</span></a>
+      <a href="/" class="brand">Shadi <span>Seyedi</span></a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"
         onclick="(function(){const top=document.getElementById('topnav');const btn=event.currentTarget;const open=top.classList.toggle('open');btn.setAttribute('aria-expanded', open);})();">
         <svg class="hamburger" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
@@ -46,30 +43,44 @@
           <li><a href="/about.html">About</a></li>
           <li><a href="/research.html">Research</a></li>
           <li><a href="/projects.html">Projects</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/contact.html" aria-current="page">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="wrap" tabindex="-1">
-    <section class="hero" id="home">
-      <div>
-        <div class="kicker">Researcher &amp; Educator</div>
-        <h1>Shadi Seyedi, PhD</h1>
-        <p class="about-intro">I study immigration, health, and belonging, as well as how policies and communities shape people's everyday lives.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="/contact.html">
-            <span>Get in touch</span>
-            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 12h12m-5-5l5 5-5 5"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="hero-side">
-        <div class="portrait-frame"><img class="portrait" src="/assets/headshot.jpg" alt="Portrait of Shadi Seyedi" loading="lazy" /></div>
+  <main id="main" class="wrap page-main" tabindex="-1">
+    <section id="contact">
+      <h1>Get in touch</h1>
+
+      <div id="form-area">
+        <form class="contact-form"
+              action="https://api.web3forms.com/submit"
+              method="POST">
+          <input type="hidden" name="access_key" value="2d327e98-9030-4e29-b5b5-698b93c917f4">
+          <input type="hidden" name="subject" value="Message from your website">
+          <input type="hidden" name="redirect" value="https://shadi-sadie.github.io/contact.html?sent=1">
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Your message"></textarea>
+          </div>
+
+          <button type="submit" class="btn primary">Send message</button>
+        </form>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -80,6 +91,11 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      document.getElementById('form-area').innerHTML =
+        '<p class="form-sent">Message sent — thank you. I\'ll be in touch.</p>';
+    }
   </script>
 </body>
 </html>
